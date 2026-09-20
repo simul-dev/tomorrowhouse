@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "steps": [
+    "initial 66-region dataset, 10 candidates, 15 KPI cards and desktop layout",
+    "real Base solve, independently audited objective and four opened map markers",
+    "real validated Excel result and JSON backup downloads",
+    "scenario save, duplicate, side-by-side comparison, reload persistence and restore",
+    "coordinate editing invalidates stale output and recalculates the actual solve",
+    "map click adds a DC, actual marker drag updates coordinates, delete and layer controls",
+    "constraint deactivate/reset and deliberate conflicting policies show infeasible correctly",
+    "period add/delete/add keeps unique names and produces a valid multi-period solve",
+    "Excel upload, schema-validated JSON import and shared-opening three-year UI solve",
+    "390px mobile layout without document overflow"
+  ],
+  "page_errors": [],
+  "browser": "Chromium / Playwright 1.60.0"
+}

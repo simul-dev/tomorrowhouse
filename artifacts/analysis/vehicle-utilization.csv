@@ -1,0 +1,10 @@
+﻿scenario,group,vehicle_id,vehicle_name,trips,reported_load_cbm,available_capacity_cbm,utilization
+base,normal,1t,1톤,2,11.2,12,0.9333333333333332
+base,normal,2.5t,2.5톤,134,1856.2,1876,0.9894456289978678
+base,normal,3.5t,3.5톤,242,4050.6,4114,0.9845892075838599
+base,premium,1t,1톤,20,109.2,120,0.91
+base,premium,2.5t,2.5톤,52,634.0,728,0.8708791208791209
+base,premium,3.5t,3.5톤,26,410.4,442,0.9285067873303167
+base,all,1t,1톤,22,120.4,132,0.9121212121212121
+base,all,2.5t,2.5톤,186,2490.2,2604,0.9562980030721966
+base,all,3.5t,3.5톤,268,4461.0,4556,0.9791483757682178

@@ -1,0 +1,975 @@
+{
+  "name": "Premium distance 40 km",
+  "customers": [
+    {
+      "id": "C_S종로구",
+      "name": "종로구",
+      "lat": 37.5735,
+      "lon": 126.9789,
+      "population": 150000,
+      "demand": {
+        "large": 11,
+        "small": 122,
+        "premium": 34
+      }
+    },
+    {
+      "id": "C_S중구",
+      "name": "중구",
+      "lat": 37.564,
+      "lon": 126.9979,
+      "population": 130000,
+      "demand": {
+        "large": 11,
+        "small": 101,
+        "premium": 31
+      }
+    },
+    {
+      "id": "C_S용산구",
+      "name": "용산구",
+      "lat": 37.5384,
+      "lon": 126.9654,
+      "population": 230000,
+      "demand": {
+        "large": 22,
+        "small": 175,
+        "premium": 56
+      }
+    },
+    {
+      "id": "C_S성동구",
+      "name": "성동구",
+      "lat": 37.5634,
+      "lon": 127.0367,
+      "population": 290000,
+      "demand": {
+        "large": 23,
+        "small": 180,
+        "premium": 61
+      }
+    },
+    {
+      "id": "C_S광진구",
+      "name": "광진구",
+      "lat": 37.5384,
+      "lon": 127.0822,
+      "population": 340000,
+      "demand": {
+        "large": 29,
+        "small": 237,
+        "premium": 87
+      }
+    },
+    {
+      "id": "C_S동대문구",
+      "name": "동대문구",
+      "lat": 37.5744,
+      "lon": 127.0395,
+      "population": 340000,
+      "demand": {
+        "large": 25,
+        "small": 253,
+        "premium": 81
+      }
+    },
+    {
+      "id": "C_S중랑구",
+      "name": "중랑구",
+      "lat": 37.6066,
+      "lon": 127.0926,
+      "population": 390000,
+      "demand": {
+        "large": 31,
+        "small": 271,
+        "premium": 92
+      }
+    },
+    {
+      "id": "C_S성북구",
+      "name": "성북구",
+      "lat": 37.5894,
+      "lon": 127.0167,
+      "population": 430000,
+      "demand": {
+        "large": 37,
+        "small": 289,
+        "premium": 99
+      }
+    },
+    {
+      "id": "C_S강북구",
+      "name": "강북구",
+      "lat": 37.6396,
+      "lon": 127.0257,
+      "population": 290000,
+      "demand": {
+        "large": 25,
+        "small": 175,
+        "premium": 63
+      }
+    },
+    {
+      "id": "C_S도봉구",
+      "name": "도봉구",
+      "lat": 37.6688,
+      "lon": 127.0471,
+      "population": 310000,
+      "demand": {
+        "large": 23,
+        "small": 200,
+        "premium": 61
+      }
+    },
+    {
+      "id": "C_S노원구",
+      "name": "노원구",
+      "lat": 37.6542,
+      "lon": 127.0568,
+      "population": 510000,
+      "demand": {
+        "large": 45,
+        "small": 395,
+        "premium": 113
+      }
+    },
+    {
+      "id": "C_S은평구",
+      "name": "은평구",
+      "lat": 37.6027,
+      "lon": 126.9291,
+      "population": 470000,
+      "demand": {
+        "large": 39,
+        "small": 349,
+        "premium": 113
+      }
+    },
+    {
+      "id": "C_S서대문구",
+      "name": "서대문구",
+      "lat": 37.5791,
+      "lon": 126.9368,
+      "population": 310000,
+      "demand": {
+        "large": 24,
+        "small": 226,
+        "premium": 70
+      }
+    },
+    {
+      "id": "C_S마포구",
+      "name": "마포구",
+      "lat": 37.5663,
+      "lon": 126.9019,
+      "population": 370000,
+      "demand": {
+        "large": 30,
+        "small": 301,
+        "premium": 85
+      }
+    },
+    {
+      "id": "C_S양천구",
+      "name": "양천구",
+      "lat": 37.517,
+      "lon": 126.8665,
+      "population": 440000,
+      "demand": {
+        "large": 32,
+        "small": 301,
+        "premium": 87
+      }
+    },
+    {
+      "id": "C_S강서구",
+      "name": "강서구",
+      "lat": 37.551,
+      "lon": 126.8495,
+      "population": 570000,
+      "demand": {
+        "large": 41,
+        "small": 457,
+        "premium": 136
+      }
+    },
+    {
+      "id": "C_S구로구",
+      "name": "구로구",
+      "lat": 37.4955,
+      "lon": 126.8874,
+      "population": 400000,
+      "demand": {
+        "large": 30,
+        "small": 255,
+        "premium": 83
+      }
+    },
+    {
+      "id": "C_S금천구",
+      "name": "금천구",
+      "lat": 37.4567,
+      "lon": 126.8956,
+      "population": 230000,
+      "demand": {
+        "large": 19,
+        "small": 172,
+        "premium": 47
+      }
+    },
+    {
+      "id": "C_S영등포구",
+      "name": "영등포구",
+      "lat": 37.5264,
+      "lon": 126.8962,
+      "population": 390000,
+      "demand": {
+        "large": 33,
+        "small": 307,
+        "premium": 91
+      }
+    },
+    {
+      "id": "C_S동작구",
+      "name": "동작구",
+      "lat": 37.5124,
+      "lon": 126.9393,
+      "population": 380000,
+      "demand": {
+        "large": 30,
+        "small": 312,
+        "premium": 78
+      }
+    },
+    {
+      "id": "C_S관악구",
+      "name": "관악구",
+      "lat": 37.4784,
+      "lon": 126.9516,
+      "population": 490000,
+      "demand": {
+        "large": 38,
+        "small": 397,
+        "premium": 110
+      }
+    },
+    {
+      "id": "C_S서초구",
+      "name": "서초구",
+      "lat": 37.4837,
+      "lon": 127.0324,
+      "population": 410000,
+      "demand": {
+        "large": 30,
+        "small": 274,
+        "premium": 86
+      }
+    },
+    {
+      "id": "C_S강남구",
+      "name": "강남구",
+      "lat": 37.5172,
+      "lon": 127.0473,
+      "population": 530000,
+      "demand": {
+        "large": 40,
+        "small": 423,
+        "premium": 112
+      }
+    },
+    {
+      "id": "C_S송파구",
+      "name": "송파구",
+      "lat": 37.5145,
+      "lon": 127.1059,
+      "population": 660000,
+      "demand": {
+        "large": 53,
+        "small": 446,
+        "premium": 148
+      }
+    },
+    {
+      "id": "C_S강동구",
+      "name": "강동구",
+      "lat": 37.5301,
+      "lon": 127.1238,
+      "population": 460000,
+      "demand": {
+        "large": 33,
+        "small": 308,
+        "premium": 106
+      }
+    },
+    {
+      "id": "C_I중구",
+      "name": "중구",
+      "lat": 37.4737,
+      "lon": 126.6213,
+      "population": 150000,
+      "demand": {
+        "large": 12,
+        "small": 109,
+        "premium": 37
+      }
+    },
+    {
+      "id": "C_I동구",
+      "name": "동구",
+      "lat": 37.4738,
+      "lon": 126.6432,
+      "population": 60000,
+      "demand": {
+        "large": 5,
+        "small": 40,
+        "premium": 15
+      }
+    },
+    {
+      "id": "C_I미추홀구",
+      "name": "미추홀구",
+      "lat": 37.4636,
+      "lon": 126.6505,
+      "population": 400000,
+      "demand": {
+        "large": 31,
+        "small": 269,
+        "premium": 102
+      }
+    },
+    {
+      "id": "C_I연수구",
+      "name": "연수구",
+      "lat": 37.4101,
+      "lon": 126.6781,
+      "population": 390000,
+      "demand": {
+        "large": 31,
+        "small": 304,
+        "premium": 101
+      }
+    },
+    {
+      "id": "C_I남동구",
+      "name": "남동구",
+      "lat": 37.4467,
+      "lon": 126.7314,
+      "population": 510000,
+      "demand": {
+        "large": 39,
+        "small": 407,
+        "premium": 112
+      }
+    },
+    {
+      "id": "C_I부평구",
+      "name": "부평구",
+      "lat": 37.507,
+      "lon": 126.7218,
+      "population": 490000,
+      "demand": {
+        "large": 43,
+        "small": 371,
+        "premium": 121
+      }
+    },
+    {
+      "id": "C_I계양구",
+      "name": "계양구",
+      "lat": 37.5374,
+      "lon": 126.7378,
+      "population": 290000,
+      "demand": {
+        "large": 24,
+        "small": 216,
+        "premium": 75
+      }
+    },
+    {
+      "id": "C_I서구",
+      "name": "서구",
+      "lat": 37.5454,
+      "lon": 126.6757,
+      "population": 610000,
+      "demand": {
+        "large": 50,
+        "small": 461,
+        "premium": 142
+      }
+    },
+    {
+      "id": "C_I강화군",
+      "name": "강화군",
+      "lat": 37.7468,
+      "lon": 126.4878,
+      "population": 70000,
+      "demand": {
+        "large": 7,
+        "small": 53,
+        "premium": 17
+      }
+    },
+    {
+      "id": "C_I옹진군",
+      "name": "옹진군",
+      "lat": 37.4466,
+      "lon": 126.6362,
+      "population": 20000,
+      "demand": {
+        "large": 2,
+        "small": 16,
+        "premium": 5
+      }
+    },
+    {
+      "id": "C_K수원시",
+      "name": "수원시",
+      "lat": 37.2636,
+      "lon": 127.0286,
+      "population": 1190000,
+      "demand": {
+        "large": 91,
+        "small": 799,
+        "premium": 281
+      }
+    },
+    {
+      "id": "C_K고양시",
+      "name": "고양시",
+      "lat": 37.6584,
+      "lon": 126.832,
+      "population": 1080000,
+      "demand": {
+        "large": 105,
+        "small": 812,
+        "premium": 268
+      }
+    },
+    {
+      "id": "C_K용인시",
+      "name": "용인시",
+      "lat": 37.241,
+      "lon": 127.1776,
+      "population": 1080000,
+      "demand": {
+        "large": 87,
+        "small": 795,
+        "premium": 221
+      }
+    },
+    {
+      "id": "C_K성남시",
+      "name": "성남시",
+      "lat": 37.42,
+      "lon": 127.1265,
+      "population": 920000,
+      "demand": {
+        "large": 70,
+        "small": 763,
+        "premium": 213
+      }
+    },
+    {
+      "id": "C_K화성시",
+      "name": "화성시",
+      "lat": 37.1996,
+      "lon": 126.8311,
+      "population": 960000,
+      "demand": {
+        "large": 73,
+        "small": 718,
+        "premium": 189
+      }
+    },
+    {
+      "id": "C_K부천시",
+      "name": "부천시",
+      "lat": 37.5035,
+      "lon": 126.766,
+      "population": 770000,
+      "demand": {
+        "large": 61,
+        "small": 627,
+        "premium": 156
+      }
+    },
+    {
+      "id": "C_K남양주시",
+      "name": "남양주시",
+      "lat": 37.636,
+      "lon": 127.2165,
+      "population": 740000,
+      "demand": {
+        "large": 63,
+        "small": 612,
+        "premium": 162
+      }
+    },
+    {
+      "id": "C_K안산시",
+      "name": "안산시",
+      "lat": 37.3219,
+      "lon": 126.8309,
+      "population": 630000,
+      "demand": {
+        "large": 53,
+        "small": 414,
+        "premium": 130
+      }
+    },
+    {
+      "id": "C_K평택시",
+      "name": "평택시",
+      "lat": 36.9921,
+      "lon": 127.1129,
+      "population": 580000,
+      "demand": {
+        "large": 45,
+        "small": 389,
+        "premium": 140
+      }
+    },
+    {
+      "id": "C_K안양시",
+      "name": "안양시",
+      "lat": 37.3943,
+      "lon": 126.9568,
+      "population": 540000,
+      "demand": {
+        "large": 43,
+        "small": 396,
+        "premium": 126
+      }
+    },
+    {
+      "id": "C_K시흥시",
+      "name": "시흥시",
+      "lat": 37.38,
+      "lon": 126.803,
+      "population": 510000,
+      "demand": {
+        "large": 47,
+        "small": 346,
+        "premium": 109
+      }
+    },
+    {
+      "id": "C_K파주시",
+      "name": "파주시",
+      "lat": 37.76,
+      "lon": 126.78,
+      "population": 500000,
+      "demand": {
+        "large": 40,
+        "small": 326,
+        "premium": 116
+      }
+    },
+    {
+      "id": "C_K김포시",
+      "name": "김포시",
+      "lat": 37.6151,
+      "lon": 126.7159,
+      "population": 490000,
+      "demand": {
+        "large": 37,
+        "small": 324,
+        "premium": 98
+      }
+    },
+    {
+      "id": "C_K의정부시",
+      "name": "의정부시",
+      "lat": 37.7381,
+      "lon": 127.0337,
+      "population": 460000,
+      "demand": {
+        "large": 32,
+        "small": 358,
+        "premium": 115
+      }
+    },
+    {
+      "id": "C_K광주시",
+      "name": "광주시",
+      "lat": 37.4292,
+      "lon": 127.255,
+      "population": 390000,
+      "demand": {
+        "large": 29,
+        "small": 246,
+        "premium": 94
+      }
+    },
+    {
+      "id": "C_K하남시",
+      "name": "하남시",
+      "lat": 37.5392,
+      "lon": 127.2148,
+      "population": 330000,
+      "demand": {
+        "large": 30,
+        "small": 238,
+        "premium": 79
+      }
+    },
+    {
+      "id": "C_K광명시",
+      "name": "광명시",
+      "lat": 37.4787,
+      "lon": 126.8645,
+      "population": 280000,
+      "demand": {
+        "large": 26,
+        "small": 180,
+        "premium": 67
+      }
+    },
+    {
+      "id": "C_K양주시",
+      "name": "양주시",
+      "lat": 37.7853,
+      "lon": 127.0454,
+      "population": 270000,
+      "demand": {
+        "large": 23,
+        "small": 177,
+        "premium": 59
+      }
+    },
+    {
+      "id": "C_K군포시",
+      "name": "군포시",
+      "lat": 37.3617,
+      "lon": 126.9352,
+      "population": 260000,
+      "demand": {
+        "large": 20,
+        "small": 196,
+        "premium": 60
+      }
+    },
+    {
+      "id": "C_K오산시",
+      "name": "오산시",
+      "lat": 37.1499,
+      "lon": 127.0773,
+      "population": 230000,
+      "demand": {
+        "large": 22,
+        "small": 161,
+        "premium": 55
+      }
+    },
+    {
+      "id": "C_K이천시",
+      "name": "이천시",
+      "lat": 37.2723,
+      "lon": 127.435,
+      "population": 220000,
+      "demand": {
+        "large": 17,
+        "small": 147,
+        "premium": 58
+      }
+    },
+    {
+      "id": "C_K구리시",
+      "name": "구리시",
+      "lat": 37.5944,
+      "lon": 127.1296,
+      "population": 190000,
+      "demand": {
+        "large": 16,
+        "small": 125,
+        "premium": 38
+      }
+    },
+    {
+      "id": "C_K안성시",
+      "name": "안성시",
+      "lat": 37.008,
+      "lon": 127.2796,
+      "population": 190000,
+      "demand": {
+        "large": 14,
+        "small": 154,
+        "premium": 42
+      }
+    },
+    {
+      "id": "C_K의왕시",
+      "name": "의왕시",
+      "lat": 37.3447,
+      "lon": 126.9683,
+      "population": 160000,
+      "demand": {
+        "large": 11,
+        "small": 105,
+        "premium": 37
+      }
+    },
+    {
+      "id": "C_K포천시",
+      "name": "포천시",
+      "lat": 37.8949,
+      "lon": 127.2003,
+      "population": 140000,
+      "demand": {
+        "large": 12,
+        "small": 103,
+        "premium": 35
+      }
+    },
+    {
+      "id": "C_K양평군",
+      "name": "양평군",
+      "lat": 37.4914,
+      "lon": 127.4874,
+      "population": 120000,
+      "demand": {
+        "large": 10,
+        "small": 84,
+        "premium": 28
+      }
+    },
+    {
+      "id": "C_K여주시",
+      "name": "여주시",
+      "lat": 37.2984,
+      "lon": 127.6371,
+      "population": 110000,
+      "demand": {
+        "large": 9,
+        "small": 93,
+        "premium": 31
+      }
+    },
+    {
+      "id": "C_K동두천시",
+      "name": "동두천시",
+      "lat": 37.9036,
+      "lon": 127.0606,
+      "population": 90000,
+      "demand": {
+        "large": 9,
+        "small": 71,
+        "premium": 22
+      }
+    },
+    {
+      "id": "C_K과천시",
+      "name": "과천시",
+      "lat": 37.4292,
+      "lon": 126.9874,
+      "population": 80000,
+      "demand": {
+        "large": 7,
+        "small": 61,
+        "premium": 16
+      }
+    },
+    {
+      "id": "C_K가평군",
+      "name": "가평군",
+      "lat": 37.8315,
+      "lon": 127.5096,
+      "population": 60000,
+      "demand": {
+        "large": 5,
+        "small": 48,
+        "premium": 14
+      }
+    },
+    {
+      "id": "C_K연천군",
+      "name": "연천군",
+      "lat": 38.0966,
+      "lon": 127.0747,
+      "population": 40000,
+      "demand": {
+        "large": 3,
+        "small": 30,
+        "premium": 9
+      }
+    }
+  ],
+  "facilities": [
+    {
+      "id": "DC01",
+      "name": "광명시 DC",
+      "lat": 37.4787,
+      "lon": 126.8645,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC02",
+      "name": "구리시 DC",
+      "lat": 37.5944,
+      "lon": 127.1296,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC03",
+      "name": "수원시 DC",
+      "lat": 37.2636,
+      "lon": 127.0286,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC04",
+      "name": "고양시 DC",
+      "lat": 37.6584,
+      "lon": 126.832,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC05",
+      "name": "부천시 DC",
+      "lat": 37.5035,
+      "lon": 126.766,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC06",
+      "name": "성남시 DC",
+      "lat": 37.42,
+      "lon": 127.1265,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC07",
+      "name": "평택시 DC",
+      "lat": 36.9921,
+      "lon": 127.1129,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC08",
+      "name": "화성시 DC",
+      "lat": 37.1996,
+      "lon": 126.8311,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC09",
+      "name": "의정부시 DC",
+      "lat": 37.7381,
+      "lon": 127.0337,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    },
+    {
+      "id": "DC10",
+      "name": "용인시 DC",
+      "lat": 37.241,
+      "lon": 127.1776,
+      "fixed_cost": 20000000.0,
+      "handling_cost": 50.0,
+      "capacity_cbm": 700.0,
+      "enabled": true
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "1t",
+      "name": "1톤",
+      "capacity_cbm": 6,
+      "fixed_cost": 350000.0,
+      "cost_per_km": 15000.0,
+      "enabled": true,
+      "max_trips": null
+    },
+    {
+      "id": "2.5t",
+      "name": "2.5톤",
+      "capacity_cbm": 14,
+      "fixed_cost": 500000.0,
+      "cost_per_km": 17000.0,
+      "enabled": true,
+      "max_trips": null
+    },
+    {
+      "id": "3.5t",
+      "name": "3.5톤",
+      "capacity_cbm": 17,
+      "fixed_cost": 600000.0,
+      "cost_per_km": 20000.0,
+      "enabled": true,
+      "max_trips": null
+    }
+  ],
+  "parameters": {
+    "demand_multiplier": 1.0,
+    "fixed_cost_weight": 1.0,
+    "transport_cost_weight": 1.0,
+    "unmet_penalty": 200000.0,
+    "inbound_cost_per_unit": 2000.0,
+    "allow_unmet": true,
+    "separate_premium": true,
+    "time_limit": 30.0,
+    "mip_rel_gap": 0.001,
+    "periods": [
+      {
+        "name": "2027",
+        "demand_multiplier": 1.0,
+        "days": 1
+      }
+    ]
+  },
+  "constraints": [
+    {
+      "id": "max-dcs",
+      "type": "max_dcs",
+      "enabled": true,
+      "value": 10.0,
+      "facility_id": null,
+      "customer_id": null,
+      "vehicle_id": null
+    },
+    {
+      "id": "capacity",
+      "type": "capacity",
+      "enabled": false,
+      "value": null,
+      "facility_id": null,
+      "customer_id": null,
+      "vehicle_id": null
+    },
+    {
+      "id": "analysis-premium_distance",
+      "type": "premium_distance",
+      "enabled": true,
+      "value": 40.0,
+      "facility_id": null,
+      "customer_id": null,
+      "vehicle_id": null
+    }
+  ]
+}

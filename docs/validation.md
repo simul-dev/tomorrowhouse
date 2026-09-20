@@ -7,4 +7,49 @@
 - 실제 66지역·10후보·3차종: 6,808 정수변수/8,845 선형 제약. 15초 시험에서 독립 검산을 통과한 실행가능해를 얻었다. MIP gap 6.3702%, 일비용 569,299,274.70원. 이는 시간 제한 시험이며 최종 권고 최적값으로 쓰지 않는다.
 - 환경 경고: 최초 pytest cache 생성 시 OneDrive 권한 경고가 발생하여 캐시 플러그인을 비활성화했다. FastAPI/Starlette 테스트 클라이언트의 httpx·AnyIO 사용에 관한 의존성 deprecation 경고 2건이 남아 있으나 테스트는 통과한다.
 
-후속 전체 시나리오, UI 및 production build 검증 결과는 이 문서에 추가한다.
+## 최종 자동 검증
+
+| 검사 | 실제 결과 |
+|---|---|
+| Python 엔진·데이터·API·경계·축약 동치·입력강건성 | **67개 통과**, 약 3초 |
+| 정확 DP 축약 vs 원 MILP | seeded 소규모, 부정 순편익, 3기간, 결합제약 전환 17개 포함 |
+| 실제 수요 분석 | 민감도 12기록 + 무용량 성장 5기록 + 용량 성장 5기록 |
+| 고정개설 평가 개선 | 연도별 하위문제 6개와 기존 해 재사용 |
+| 저장 입력·결과 재검산 | **28쌍 모두 통과**, `artifacts/verification.json` |
+| Chromium 실제 사용자 흐름 | **10개 흐름 통과**, JavaScript 페이지 오류 0 |
+| 화면 크기 | 1600×1100, 390×844; 문서 가로 넘침 없음 |
+| 프로덕션 | `npm run build` 성공, 로컬 정적 서비스에서 실제 API 연동 검증 |
+
+브라우저 검증은 mock API가 아니라 실제 `/api/solve`, 업로드, 검증, Excel 내보내기를 호출했다. Base의 목적값·개설 마커 4개, 저장·복제·비교·새로고침 보존, 좌표 변경 후 결과 무효화와 재계산, 지도 클릭 추가·실제 드래그·삭제·레이어, 정책 비활성화·복원·충돌 infeasible, Excel/JSON 입출력, 3년 공유개설 및 기간 전환을 확인했다.
+
+실행 기록은 [browser-validation.json](../artifacts/browser-validation.json), 로컬 스크린샷은 `artifacts/screenshots/desktop.png`, `mobile.png`다. 스크린샷·다운로드 임시파일·서버로그는 Git에서 제외하고 기계 판독 가능한 검증 기록은 커밋한다.
+
+## 최종 Base와 해 품질
+
+정확 구간 DP→축약 MILP는 6,808개 전체 변수 대신 671개 변수로 개설·배정을 풀었다. 저장된 원본 Base는 **0.273초, gap 0, 541,155,890.88원/일**이며 구리·수원·부천·용인을 개설한다. 26,942개 충족, 161개 미충족, 충족률 99.406%, 476회/일이다. 이는 문서화한 미충족·공급비 가정과 고정 후보 집합에 대한 결과다.
+
+현재 거리·혼재·차종·수요증가와 용량 비활성 성장 실험은 gap 0이다. 용량 25%/700CBM는 각각 gap 약 3.63%/1.92%의 검산된 시간제한 해다. 용량 성장 통합안 gap은 약 1.23%이며, 연도별 재평가로 고정 myopic/peak 운영해 gap을 약 0.46%/0.26%로 개선했다. 고정 개설의 운영 gap과 입지까지 탐색한 gap은 구분한다. [정책 보고서](policy-recommendations.md)에 실제 수치와 한계를 기록했다.
+
+## 발견·수정한 문제와 남은 경고
+
+- 초기에 전체 MILP만 사용하면 15초 안에 gap 6.37%가 남았다. 독립 구간의 정확 DP 축약을 추가하고 원 모형과 동치를 검사했다. 결합 용량제약에는 원 MILP를 유지한다.
+- JSON `true`가 상품 개수 1로 변환될 수 있어 strict 타입 검증을 추가했다. 잘못된 결과의 추가 비용 객체가 Excel 내보내기 500 오류를 만들 수 있어 비용키·숫자 메타데이터를 검사하도록 수정했다. 회귀 테스트 10개 통과.
+- 초기 프런트 빌드에서 JSX 괄호 오류를 발견해 수정한 뒤 production build가 통과했다.
+- 초기 브라우저 스크립트는 마커 이동 애니메이션 완료 전에 드래그하고, 정책 탭에서 거점 목록을 검사하여 실패했다. 지도 애니메이션 안정 후 실제 marker wrapper를 드래그하고 거점 탭으로 이동하도록 테스트를 수정했다. 최종 전체 흐름이 통과했다.
+- 저장 시 오래된 시나리오를 조용히 자르는 로직을 제거했다. 용량 비활성·전체 상한 override가 결과표에서 오해되지 않도록 적용 용량 표시를 구분했다.
+- 중간 기간을 삭제한 뒤 다시 추가하면 기간 이름이 중복될 수 있어 미사용 이름을 생성하도록 수정했다. 브라우저에서 추가→삭제→추가 후 실제 다기간 계산까지 회귀 확인했다.
+- 남은 경고: Starlette/httpx·AnyIO deprecation 2건, Vite에서 lucide-react의 `use client` 지시문 관련 경고 2건. 이 앱은 브라우저 렌더링을 사용하며 빌드와 실제 흐름은 성공했다. 의존성 정리 시 추적한다.
+
+## 재현 명령
+
+```powershell
+.\.venv\Scripts\python -m pytest
+.\.venv\Scripts\python -X utf8 scripts\verify_artifacts.py
+# 서버가 8000 포트에서 실행 중이고 playwright/Chromium 설치 후
+.\.venv\Scripts\python -X utf8 scripts\browser_check.py
+# 개발 환경의 기존 Python에 playwright가 설치되어 있으면 python으로 실행 가능
+cd frontend
+npm run build
+```
+
+`scripts/setup.ps1 -WithBrowserTests`로 브라우저 검증 의존성을 설치할 수 있다. 전체 민감도는 `run_analysis.py`; 용량 성장 재평가 개선은 `refine_growth_evaluations.py --time-limit 20`이다. 계산시간 제한의 해는 실행 환경·부하에 따라 incumbent가 달라질 수 있다. 원본 파일 해시와 저장 입력은 결과 해석의 기준이다.

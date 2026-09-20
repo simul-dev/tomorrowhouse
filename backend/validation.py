@@ -46,6 +46,10 @@ def _audit(data, result, errors, distance_provider):
     if result.get("status") not in ("optimal", "feasible_limit"):
         errors.append("실행 가능한 결과 상태가 아니므로 검산할 수 없습니다.")
         return
+    gap = result.get("mip_gap")
+    check(gap is None or (number(gap) and gap >= 0), "MIP gap은 null 또는 유한한 0 이상 숫자여야 합니다.")
+    runtime = result.get("runtime_seconds")
+    check(number(runtime) and runtime >= 0, "계산시간은 유한한 0 이상 숫자여야 합니다.")
     fs = {f["id"]: f for f in data["facilities"]}
     cs = {c["id"]: c for c in data["customers"]}
     vs = {v["id"]: v for v in data["vehicles"]}
@@ -186,6 +190,7 @@ def _audit(data, result, errors, distance_provider):
             if v["max_trips"] is not None:
                 check(trip_counts[vid] <= v["max_trips"], f"{label}/{vid}: 차량 자체 일별 회차 상한 위반")
         costs["total"] = sum(costs.values())
+        check(set(period["costs"]) == set(costs), f"{label}: 비용 항목은 계약의 7개 항목과 정확히 일치해야 합니다.")
         for key, value in costs.items():
             near(period["costs"][key], value, f"{label}: 비용 {key}", 0.05)
         reported_facilities = {f["id"]: f for f in period["facilities"]}

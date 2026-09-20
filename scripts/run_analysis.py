@@ -252,6 +252,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "analysis")
     parser.add_argument("--time-limit", type=float, default=10, help="각 MILP 제한시간(초), 기본 10")
     parser.add_argument("--section", choices=("sensitivity", "growth", "all"), default="all")
+    parser.add_argument("--growth-capacity", type=float, help="성장 비교의 모든 기간에 고정 DC 용량(CBM/일) 적용")
+    parser.add_argument("--gap", type=float, default=0.001, help="상대 MIP gap 목표, 기본 0.001 (0.1%%)")
     parser.add_argument("--quick", action="store_true", help="민감도에서 25/35 km, 25%% 용량, 3.5톤 단독 생략")
     return parser
 
@@ -260,12 +262,14 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         base, audit = default_scenario(args.source)
-        base = validated_clone(base, "Base · 2027", parameters={"time_limit": args.time_limit})
+        base = validated_clone(base, "Base · 2027", parameters={"time_limit": args.time_limit, "mip_rel_gap": args.gap})
         runners = []
         if args.section in ("sensitivity", "all"):
             runners.append(sensitivity(base, audit, args.output, args.quick))
         if args.section in ("growth", "all"):
-            runners.append(growth(base, audit, args.output))
+            growth_base = (validated_clone(base, "Growth capacity policy", constraints=constraints_with(base, "capacity", args.growth_capacity))
+                           if args.growth_capacity is not None else base)
+            runners.append(growth(growth_base, audit, args.output))
         rows = [row for runner in runners for row in runner.rows]
         print(f"Analysis artifacts: {args.output.resolve()} | {len(rows)} records", flush=True)
         # Feasible limits are valid analysis outcomes, but failed/skipped runs remain visible.

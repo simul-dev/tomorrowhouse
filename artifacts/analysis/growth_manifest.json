@@ -1,0 +1,83 @@
+{
+  "section": "growth",
+  "started_at_utc": "2026-09-20T15:40:45.578846+00:00",
+  "updated_at_utc": "2026-09-20T15:40:50.621888+00:00",
+  "source_audit": {
+    "sheet": "Sheet1",
+    "header_row": 1,
+    "customers": 66,
+    "population": 26120000,
+    "demand": {
+      "large": 2108,
+      "small": 19070,
+      "premium": 5925
+    },
+    "total_units": 27103,
+    "total_cbm": 7107.0,
+    "sha256": "eaa353cce85f97b951933e58519c5bd8b8427da19b374471033fe239a2eedada",
+    "warnings": [],
+    "column_mapping": {
+      "id": 1,
+      "population": 2,
+      "lat": 3,
+      "lon": 4,
+      "large": 5,
+      "small": 6,
+      "premium": 7
+    }
+  },
+  "summary_units": "Costs, demand, trips and distance in summary are weighted by each period's modeled days; period CSV gives daily values.",
+  "comparison_note": "Compare growth fixed-design evaluations over the same three years; design objectives use different horizons. Time-limited/gap solutions do not prove policy dominance.",
+  "records": [
+    {
+      "experiment": "growth_myopic_design",
+      "role": "single_year_design",
+      "wall_seconds": 0.398976,
+      "reused_from": "",
+      "input_sha256": "5f22d39f05ae65a4c6793679557d66666b1aa5e68583055d75a2708fcf09b2b9",
+      "scenario_file": "growth_myopic_design.scenario.json",
+      "result_file": "growth_myopic_design.result.json",
+      "reference_experiment": ""
+    },
+    {
+      "experiment": "growth_myopic_evaluation",
+      "role": "fixed_design_3year_evaluation",
+      "wall_seconds": 1.48262,
+      "reused_from": "",
+      "input_sha256": "60d4dcc8e2c813e4d83754fffc2b39748699a2865b3bb0cef112803222055400",
+      "scenario_file": "growth_myopic_evaluation.scenario.json",
+      "result_file": "growth_myopic_evaluation.result.json",
+      "reference_experiment": "growth_myopic_design"
+    },
+    {
+      "experiment": "growth_peak_design",
+      "role": "single_year_design",
+      "wall_seconds": 0.563758,
+      "reused_from": "",
+      "input_sha256": "eb365541f4af907cfe0fd70b4ca159e6bcfe3d2890c18b74bb8b00a13b272823",
+      "scenario_file": "growth_peak_design.scenario.json",
+      "result_file": "growth_peak_design.result.json",
+      "reference_experiment": ""
+    },
+    {
+      "experiment": "growth_peak_evaluation",
+      "role": "fixed_design_3year_evaluation",
+      "wall_seconds": 1.278965,
+      "reused_from": "",
+      "input_sha256": "b60f1746f0ef29d5d904785d45c754049cd37c51ea5401c8991cf5ad6689964e",
+      "scenario_file": "growth_peak_evaluation.scenario.json",
+      "result_file": "growth_peak_evaluation.result.json",
+      "reference_experiment": "growth_peak_design"
+    },
+    {
+      "experiment": "growth_integrated",
+      "role": "integrated_3year_design_and_evaluation",
+      "wall_seconds": 1.214935,
+      "reused_from": "",
+      "input_sha256": "be4e2f90a420bb4969824bacab323fae9a7744f603e9966380505b4fb54ee6d6",
+      "scenario_file": "growth_integrated.scenario.json",
+      "result_file": "growth_integrated.result.json",
+      "reference_experiment": ""
+    }
+  ]
+}

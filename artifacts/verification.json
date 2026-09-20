@@ -1,0 +1,202 @@
+{
+  "total": 28,
+  "passed": true,
+  "records": [
+    {
+      "file": "artifacts\\analysis\\base.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\capacity_25percent.result.json",
+      "status": "feasible_limit",
+      "gap": 0.0362958919485594,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\capacity_700cbm.result.json",
+      "status": "feasible_limit",
+      "gap": 0.019248935637357478,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\demand_plus20percent.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\growth_integrated.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\growth_myopic_design.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\growth_myopic_evaluation.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\growth_peak_design.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\growth_peak_evaluation.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\mixed.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\premium_20km.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\premium_25km.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\premium_30km.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\premium_35km.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\premium_40km.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\vehicle_1t_only.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\analysis\\vehicle_3_5t_only.result.json",
+      "status": "optimal",
+      "gap": 0.0,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\growth_integrated.result.json",
+      "status": "feasible_limit",
+      "gap": 0.01233846702755216,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\growth_myopic_design.result.json",
+      "status": "feasible_limit",
+      "gap": 0.0236722109643836,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\growth_myopic_evaluation.result.json",
+      "status": "feasible_limit",
+      "gap": 0.004604880467814567,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\growth_peak_design.result.json",
+      "status": "feasible_limit",
+      "gap": 0.006856717882970153,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\growth_peak_evaluation.result.json",
+      "status": "feasible_limit",
+      "gap": 0.00262254090925732,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\refinement_myopic_year1.result.json",
+      "status": "feasible_limit",
+      "gap": 0.002254165131185137,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\refinement_myopic_year2.result.json",
+      "status": "feasible_limit",
+      "gap": 0.008223820504910396,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\refinement_myopic_year3.result.json",
+      "status": "feasible_limit",
+      "gap": 0.0034971377517542153,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\refinement_peak_year1.result.json",
+      "status": "feasible_limit",
+      "gap": 0.0013278496273401313,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\refinement_peak_year2.result.json",
+      "status": "feasible_limit",
+      "gap": 0.002331599356830441,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "artifacts\\growth-capacity\\refinement_peak_year3.result.json",
+      "status": "feasible_limit",
+      "gap": 0.010264567737674922,
+      "passed": true,
+      "errors": []
+    }
+  ]
+}

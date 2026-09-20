@@ -1,0 +1,50 @@
+[
+  {
+    "strategy": "myopic",
+    "period": "Growth year 1",
+    "chosen": "annual_milp",
+    "daily_cost": 636708620.9719207,
+    "daily_lower_bound": 635273374.5998008,
+    "annual_subproblem_status": "feasible_limit"
+  },
+  {
+    "strategy": "myopic",
+    "period": "Growth year 2",
+    "chosen": "annual_milp",
+    "daily_cost": 748914062.9197633,
+    "daily_lower_bound": 742755128.092708,
+    "annual_subproblem_status": "feasible_limit"
+  },
+  {
+    "strategy": "myopic",
+    "period": "Growth year 3",
+    "chosen": "annual_milp",
+    "daily_cost": 1095520059.6377623,
+    "daily_lower_bound": 1091688875.079399,
+    "annual_subproblem_status": "feasible_limit"
+  },
+  {
+    "strategy": "peak",
+    "period": "Growth year 1",
+    "chosen": "annual_milp",
+    "daily_cost": 653985881.3200362,
+    "daily_lower_bound": 653117486.4112396,
+    "annual_subproblem_status": "feasible_limit"
+  },
+  {
+    "strategy": "peak",
+    "period": "Growth year 2",
+    "chosen": "annual_milp",
+    "daily_cost": 748979866.492686,
+    "daily_lower_bound": 747233545.5176927,
+    "annual_subproblem_status": "feasible_limit"
+  },
+  {
+    "strategy": "peak",
+    "period": "Growth year 3",
+    "chosen": "known_design",
+    "daily_cost": 867087570.974252,
+    "daily_lower_bound": 863748979.1633278,
+    "annual_subproblem_status": "feasible_limit"
+  }
+]

@@ -1,0 +1,153 @@
+{
+  "section": "sensitivity",
+  "started_at_utc": "2026-09-20T15:39:42.079896+00:00",
+  "updated_at_utc": "2026-09-20T15:40:45.577198+00:00",
+  "source_audit": {
+    "sheet": "Sheet1",
+    "header_row": 1,
+    "customers": 66,
+    "population": 26120000,
+    "demand": {
+      "large": 2108,
+      "small": 19070,
+      "premium": 5925
+    },
+    "total_units": 27103,
+    "total_cbm": 7107.0,
+    "sha256": "eaa353cce85f97b951933e58519c5bd8b8427da19b374471033fe239a2eedada",
+    "warnings": [],
+    "column_mapping": {
+      "id": 1,
+      "population": 2,
+      "lat": 3,
+      "lon": 4,
+      "large": 5,
+      "small": 6,
+      "premium": 7
+    }
+  },
+  "summary_units": "Costs, demand, trips and distance in summary are weighted by each period's modeled days; period CSV gives daily values.",
+  "comparison_note": "Compare growth fixed-design evaluations over the same three years; design objectives use different horizons. Time-limited/gap solutions do not prove policy dominance.",
+  "records": [
+    {
+      "experiment": "base",
+      "role": "sensitivity",
+      "wall_seconds": 0.275159,
+      "reused_from": "",
+      "input_sha256": "6dcc515de4532ef9309cdc4b984a0c75c2529805ab47f390ed53178bd502696f",
+      "scenario_file": "base.scenario.json",
+      "result_file": "base.result.json",
+      "reference_experiment": ""
+    },
+    {
+      "experiment": "premium_20km",
+      "role": "sensitivity",
+      "wall_seconds": 0.239655,
+      "reused_from": "",
+      "input_sha256": "7f0507391936ed4c4bdc128f832ec394dd692dc2c59e6803656227d22995e6f6",
+      "scenario_file": "premium_20km.scenario.json",
+      "result_file": "premium_20km.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "premium_25km",
+      "role": "sensitivity",
+      "wall_seconds": 0.24945,
+      "reused_from": "",
+      "input_sha256": "23f3342d795ad1b97ec2f72022175730fa123b85d7defca39c156ac2ce1f6ef7",
+      "scenario_file": "premium_25km.scenario.json",
+      "result_file": "premium_25km.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "premium_30km",
+      "role": "sensitivity",
+      "wall_seconds": 1.9e-05,
+      "reused_from": "base",
+      "input_sha256": "6dcc515de4532ef9309cdc4b984a0c75c2529805ab47f390ed53178bd502696f",
+      "scenario_file": "premium_30km.scenario.json",
+      "result_file": "premium_30km.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "premium_35km",
+      "role": "sensitivity",
+      "wall_seconds": 0.256178,
+      "reused_from": "",
+      "input_sha256": "4204847f8cd88a3136b5a7f81b292603b2145cbe6f1210f014ff9240bf69901c",
+      "scenario_file": "premium_35km.scenario.json",
+      "result_file": "premium_35km.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "premium_40km",
+      "role": "sensitivity",
+      "wall_seconds": 0.264903,
+      "reused_from": "",
+      "input_sha256": "349607e2b936e2883df225bf18377e54e0e24318bada1c4b2f96d70f50f213af",
+      "scenario_file": "premium_40km.scenario.json",
+      "result_file": "premium_40km.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "capacity_25percent",
+      "role": "sensitivity",
+      "wall_seconds": 30.106084,
+      "reused_from": "",
+      "input_sha256": "516cee8032aa01495bdb8608ba34a099b5204c5b8ce293c77cd10c405f101de5",
+      "scenario_file": "capacity_25percent.scenario.json",
+      "result_file": "capacity_25percent.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "capacity_700cbm",
+      "role": "sensitivity",
+      "wall_seconds": 30.111056,
+      "reused_from": "",
+      "input_sha256": "72d1bac3273af669310643e4a4b6703bcb8afbce8f608bfbcc495b7215fc3931",
+      "scenario_file": "capacity_700cbm.scenario.json",
+      "result_file": "capacity_700cbm.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "mixed",
+      "role": "sensitivity",
+      "wall_seconds": 0.327842,
+      "reused_from": "",
+      "input_sha256": "a897701cee0d3f4c9e8a243357298c9e7393ed1fc11fe535b0482175259c22a6",
+      "scenario_file": "mixed.scenario.json",
+      "result_file": "mixed.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "vehicle_1t_only",
+      "role": "sensitivity",
+      "wall_seconds": 0.213461,
+      "reused_from": "",
+      "input_sha256": "7429f1c93bdb294af827e44fa1c99bf850090d95ba9a6d3eeecf3be8a46b4192",
+      "scenario_file": "vehicle_1t_only.scenario.json",
+      "result_file": "vehicle_1t_only.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "vehicle_3_5t_only",
+      "role": "sensitivity",
+      "wall_seconds": 0.235234,
+      "reused_from": "",
+      "input_sha256": "d834bd3bd59206d90cf350645181efcc3e948d7e107928e52255c4338542841b",
+      "scenario_file": "vehicle_3_5t_only.scenario.json",
+      "result_file": "vehicle_3_5t_only.result.json",
+      "reference_experiment": "base"
+    },
+    {
+      "experiment": "demand_plus20percent",
+      "role": "sensitivity",
+      "wall_seconds": 0.328134,
+      "reused_from": "",
+      "input_sha256": "9320f2cadfd9d6d917d2fef8baaf5a90abde874d8a840ce77bc413f0b53067fd",
+      "scenario_file": "demand_plus20percent.scenario.json",
+      "result_file": "demand_plus20percent.result.json",
+      "reference_experiment": "base"
+    }
+  ]
+}

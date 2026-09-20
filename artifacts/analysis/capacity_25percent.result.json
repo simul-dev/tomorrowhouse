@@ -1,0 +1,2822 @@
+{
+  "objective": 561143734.3934033,
+  "open_facilities": [
+    "DC01",
+    "DC02",
+    "DC05",
+    "DC08",
+    "DC09",
+    "DC10"
+  ],
+  "periods": [
+    {
+      "name": "2027",
+      "days": 1,
+      "demand_multiplier": 1.0,
+      "costs": {
+        "fixed": 120000000.0,
+        "handling": 1350200.0,
+        "inbound": 54008000.0,
+        "transport_normal": 295791235.7171995,
+        "transport_premium": 70194298.67620374,
+        "penalty": 19800000.0,
+        "total": 561143734.3934033
+      },
+      "kpis": {
+        "open_dcs": 6,
+        "total_demand": 27103,
+        "fulfilled_demand": 27004,
+        "fulfillment_rate": 0.9963472678301295,
+        "total_trips": 482,
+        "total_distance_km": 10588.894491450723,
+        "average_distance_km": 10.741225525539068,
+        "max_distance_km": 42.57243428419957,
+        "trips_by_vehicle": {
+          "1t": 16,
+          "2.5t": 178,
+          "3.5t": 288
+        }
+      },
+      "assignments": [
+        {
+          "customer_id": "C_S종로구",
+          "facility_id": "DC02",
+          "distance_km": 13.481160069042645,
+          "quantities": {
+            "large": 11,
+            "small": 122,
+            "premium": 34
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S중구",
+          "facility_id": "DC02",
+          "distance_km": 12.088101503870433,
+          "quantities": {
+            "large": 11,
+            "small": 101,
+            "premium": 31
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S용산구",
+          "facility_id": "DC01",
+          "distance_km": 11.103105221885814,
+          "quantities": {
+            "large": 22,
+            "small": 175,
+            "premium": 56
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S성동구",
+          "facility_id": "DC02",
+          "distance_km": 8.882794143756028,
+          "quantities": {
+            "large": 23,
+            "small": 180,
+            "premium": 61
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S광진구",
+          "facility_id": "DC02",
+          "distance_km": 7.4985529777426825,
+          "quantities": {
+            "large": 29,
+            "small": 237,
+            "premium": 87
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S동대문구",
+          "facility_id": "DC02",
+          "distance_km": 8.244946036800444,
+          "quantities": {
+            "large": 25,
+            "small": 253,
+            "premium": 81
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S중랑구",
+          "facility_id": "DC02",
+          "distance_km": 3.530651385895588,
+          "quantities": {
+            "large": 31,
+            "small": 271,
+            "premium": 92
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S성북구",
+          "facility_id": "DC02",
+          "distance_km": 9.962951572192516,
+          "quantities": {
+            "large": 37,
+            "small": 289,
+            "premium": 99
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S강북구",
+          "facility_id": "DC02",
+          "distance_km": 10.440703877621715,
+          "quantities": {
+            "large": 25,
+            "small": 175,
+            "premium": 63
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S도봉구",
+          "facility_id": "DC09",
+          "distance_km": 7.795473262976722,
+          "quantities": {
+            "large": 23,
+            "small": 200,
+            "premium": 61
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S노원구",
+          "facility_id": "DC02",
+          "distance_km": 9.237023171445454,
+          "quantities": {
+            "large": 45,
+            "small": 395,
+            "premium": 113
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S은평구",
+          "facility_id": "DC01",
+          "distance_km": 14.918285937131305,
+          "quantities": {
+            "large": 39,
+            "small": 349,
+            "premium": 113
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S서대문구",
+          "facility_id": "DC01",
+          "distance_km": 12.856246334532045,
+          "quantities": {
+            "large": 24,
+            "small": 226,
+            "premium": 70
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S마포구",
+          "facility_id": "DC01",
+          "distance_km": 10.283965076806522,
+          "quantities": {
+            "large": 30,
+            "small": 301,
+            "premium": 85
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S양천구",
+          "facility_id": "DC01",
+          "distance_km": 4.262424902334422,
+          "quantities": {
+            "large": 32,
+            "small": 301,
+            "premium": 87
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S강서구",
+          "facility_id": "DC01",
+          "distance_km": 8.147535067833822,
+          "quantities": {
+            "large": 41,
+            "small": 457,
+            "premium": 136
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S구로구",
+          "facility_id": "DC01",
+          "distance_km": 2.7517641291135417,
+          "quantities": {
+            "large": 30,
+            "small": 255,
+            "premium": 83
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S금천구",
+          "facility_id": "DC01",
+          "distance_km": 3.6766712643813313,
+          "quantities": {
+            "large": 19,
+            "small": 172,
+            "premium": 47
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S영등포구",
+          "facility_id": "DC01",
+          "distance_km": 5.996017779667033,
+          "quantities": {
+            "large": 33,
+            "small": 307,
+            "premium": 91
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S동작구",
+          "facility_id": "DC01",
+          "distance_km": 7.588753218744599,
+          "quantities": {
+            "large": 30,
+            "small": 312,
+            "premium": 78
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S관악구",
+          "facility_id": "DC01",
+          "distance_km": 7.6859785323988215,
+          "quantities": {
+            "large": 38,
+            "small": 397,
+            "premium": 110
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S서초구",
+          "facility_id": "DC02",
+          "distance_km": 14.998903151826026,
+          "quantities": {
+            "large": 30,
+            "small": 274,
+            "premium": 86
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S강남구",
+          "facility_id": "DC02",
+          "distance_km": 11.239307964711534,
+          "quantities": {
+            "large": 40,
+            "small": 423,
+            "premium": 112
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S송파구",
+          "facility_id": "DC02",
+          "distance_km": 9.126824950683401,
+          "quantities": {
+            "large": 53,
+            "small": 446,
+            "premium": 148
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_S강동구",
+          "facility_id": "DC02",
+          "distance_km": 7.168097522755372,
+          "quantities": {
+            "large": 33,
+            "small": 308,
+            "premium": 106
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I중구",
+          "facility_id": "DC05",
+          "distance_km": 13.189955376683162,
+          "quantities": {
+            "large": 12,
+            "small": 109,
+            "premium": 37
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I동구",
+          "facility_id": "DC05",
+          "distance_km": 11.326826828567523,
+          "quantities": {
+            "large": 5,
+            "small": 40,
+            "premium": 15
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I미추홀구",
+          "facility_id": "DC05",
+          "distance_km": 11.115163713969679,
+          "quantities": {
+            "large": 31,
+            "small": 269,
+            "premium": 102
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I연수구",
+          "facility_id": "DC05",
+          "distance_km": 12.963772093296654,
+          "quantities": {
+            "large": 31,
+            "small": 304,
+            "premium": 101
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I남동구",
+          "facility_id": "DC05",
+          "distance_km": 7.015207820494911,
+          "quantities": {
+            "large": 39,
+            "small": 407,
+            "premium": 112
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I부평구",
+          "facility_id": "DC05",
+          "distance_km": 3.9182922937406834,
+          "quantities": {
+            "large": 43,
+            "small": 371,
+            "premium": 121
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I계양구",
+          "facility_id": "DC05",
+          "distance_km": 4.516036464042672,
+          "quantities": {
+            "large": 24,
+            "small": 216,
+            "premium": 75
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I서구",
+          "facility_id": "DC05",
+          "distance_km": 9.226183160437675,
+          "quantities": {
+            "large": 50,
+            "small": 461,
+            "premium": 142
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_I강화군",
+          "facility_id": "DC05",
+          "distance_km": 36.49919268439636,
+          "quantities": {
+            "large": 7,
+            "small": 53,
+            "premium": 0
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 17
+          }
+        },
+        {
+          "customer_id": "C_I옹진군",
+          "facility_id": "DC05",
+          "distance_km": 13.085638371825699,
+          "quantities": {
+            "large": 2,
+            "small": 16,
+            "premium": 5
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K수원시",
+          "facility_id": "DC10",
+          "distance_km": 13.425109076050218,
+          "quantities": {
+            "large": 91,
+            "small": 799,
+            "premium": 281
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K고양시",
+          "facility_id": "DC09",
+          "distance_km": 19.835834498273904,
+          "quantities": {
+            "large": 105,
+            "small": 812,
+            "premium": 268
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K용인시",
+          "facility_id": "DC10",
+          "distance_km": 0.0,
+          "quantities": {
+            "large": 87,
+            "small": 795,
+            "premium": 221
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K성남시",
+          "facility_id": "DC10",
+          "distance_km": 20.41027190714009,
+          "quantities": {
+            "large": 70,
+            "small": 763,
+            "premium": 213
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K화성시",
+          "facility_id": "DC08",
+          "distance_km": 0.0,
+          "quantities": {
+            "large": 73,
+            "small": 718,
+            "premium": 189
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K부천시",
+          "facility_id": "DC05",
+          "distance_km": 0.0,
+          "quantities": {
+            "large": 61,
+            "small": 627,
+            "premium": 156
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K남양주시",
+          "facility_id": "DC02",
+          "distance_km": 8.943389552732633,
+          "quantities": {
+            "large": 63,
+            "small": 612,
+            "premium": 162
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K안산시",
+          "facility_id": "DC08",
+          "distance_km": 13.599169830979804,
+          "quantities": {
+            "large": 53,
+            "small": 414,
+            "premium": 130
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K평택시",
+          "facility_id": "DC10",
+          "distance_km": 28.26476901516331,
+          "quantities": {
+            "large": 45,
+            "small": 389,
+            "premium": 140
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K안양시",
+          "facility_id": "DC01",
+          "distance_km": 12.429300567709747,
+          "quantities": {
+            "large": 43,
+            "small": 396,
+            "premium": 126
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K시흥시",
+          "facility_id": "DC01",
+          "distance_km": 12.24498472134636,
+          "quantities": {
+            "large": 47,
+            "small": 346,
+            "premium": 109
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K파주시",
+          "facility_id": "DC09",
+          "distance_km": 22.43831658836453,
+          "quantities": {
+            "large": 40,
+            "small": 326,
+            "premium": 116
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K김포시",
+          "facility_id": "DC05",
+          "distance_km": 13.17174735310425,
+          "quantities": {
+            "large": 37,
+            "small": 324,
+            "premium": 98
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K의정부시",
+          "facility_id": "DC09",
+          "distance_km": 0.0,
+          "quantities": {
+            "large": 32,
+            "small": 358,
+            "premium": 115
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K광주시",
+          "facility_id": "DC10",
+          "distance_km": 22.017331540697437,
+          "quantities": {
+            "large": 29,
+            "small": 246,
+            "premium": 94
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K하남시",
+          "facility_id": "DC02",
+          "distance_km": 9.698716559161632,
+          "quantities": {
+            "large": 30,
+            "small": 238,
+            "premium": 79
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K광명시",
+          "facility_id": "DC01",
+          "distance_km": 0.0,
+          "quantities": {
+            "large": 26,
+            "small": 180,
+            "premium": 67
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K양주시",
+          "facility_id": "DC09",
+          "distance_km": 5.348235050059482,
+          "quantities": {
+            "large": 23,
+            "small": 177,
+            "premium": 59
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K군포시",
+          "facility_id": "DC01",
+          "distance_km": 14.430455254511894,
+          "quantities": {
+            "large": 20,
+            "small": 196,
+            "premium": 60
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K오산시",
+          "facility_id": "DC10",
+          "distance_km": 13.473751093515867,
+          "quantities": {
+            "large": 22,
+            "small": 161,
+            "premium": 55
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K이천시",
+          "facility_id": "DC10",
+          "distance_km": 23.0451738397246,
+          "quantities": {
+            "large": 17,
+            "small": 147,
+            "premium": 58
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K구리시",
+          "facility_id": "DC02",
+          "distance_km": 0.0,
+          "quantities": {
+            "large": 16,
+            "small": 125,
+            "premium": 38
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K안성시",
+          "facility_id": "DC10",
+          "distance_km": 27.441336215384453,
+          "quantities": {
+            "large": 14,
+            "small": 154,
+            "premium": 42
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K의왕시",
+          "facility_id": "DC08",
+          "distance_km": 20.191668268762704,
+          "quantities": {
+            "large": 11,
+            "small": 105,
+            "premium": 37
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K포천시",
+          "facility_id": "DC09",
+          "distance_km": 22.76310392239009,
+          "quantities": {
+            "large": 12,
+            "small": 103,
+            "premium": 35
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K양평군",
+          "facility_id": "DC02",
+          "distance_km": 33.560615195571664,
+          "quantities": {
+            "large": 10,
+            "small": 84,
+            "premium": 0
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 28
+          }
+        },
+        {
+          "customer_id": "C_K여주시",
+          "facility_id": "DC10",
+          "distance_km": 41.158257405094865,
+          "quantities": {
+            "large": 9,
+            "small": 93,
+            "premium": 0
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 31
+          }
+        },
+        {
+          "customer_id": "C_K동두천시",
+          "facility_id": "DC09",
+          "distance_km": 18.5538500476135,
+          "quantities": {
+            "large": 9,
+            "small": 71,
+            "premium": 22
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K과천시",
+          "facility_id": "DC01",
+          "distance_km": 12.16498068090383,
+          "quantities": {
+            "large": 7,
+            "small": 61,
+            "premium": 16
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 0
+          }
+        },
+        {
+          "customer_id": "C_K가평군",
+          "facility_id": "DC02",
+          "distance_km": 42.57243428419957,
+          "quantities": {
+            "large": 5,
+            "small": 48,
+            "premium": 0
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 14
+          }
+        },
+        {
+          "customer_id": "C_K연천군",
+          "facility_id": "DC09",
+          "distance_km": 40.0253526362599,
+          "quantities": {
+            "large": 3,
+            "small": 30,
+            "premium": 0
+          },
+          "unmet": {
+            "large": 0,
+            "small": 0,
+            "premium": 9
+          }
+        }
+      ],
+      "trips": [
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S종로구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 35.4,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S종로구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 6.8,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S중구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 31.2,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S중구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 6.2,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S용산구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S용산구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 29.0,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S용산구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 11.2,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S성동구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S성동구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 17,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S성동구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 12.2,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S광진구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S광진구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 48.4,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S광진구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S광진구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 11.4,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S동대문구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S동대문구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 33.6,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S동대문구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 16.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S중랑구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 5,
+          "load_cbm": 70,
+          "capacity_cbm": 70
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S중랑구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 15.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S중랑구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S중랑구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 12.4,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S성북구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S성북구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 66.8,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S성북구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S성북구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 13.8,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강북구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강북구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 32.0,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강북구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 12.6,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_S도봉구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_S도봉구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 49.0,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_S도봉구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 12.2,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S노원구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 4,
+          "load_cbm": 56,
+          "capacity_cbm": 56
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S노원구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 68,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S노원구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 22.6,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S은평구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S은평구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 6,
+          "load_cbm": 94.8,
+          "capacity_cbm": 102
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S은평구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 22.6,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S서대문구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 5,
+          "load_cbm": 69.2,
+          "capacity_cbm": 70
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S서대문구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S마포구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S마포구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 62.2,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S마포구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 17,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S양천구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S양천구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 64.2,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S양천구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 17.4,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S강서구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S강서구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 7,
+          "load_cbm": 118.4,
+          "capacity_cbm": 119
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S강서구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 27.2,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S구로구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S구로구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 67.0,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S구로구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 16.6,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S금천구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S금천구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 11.4,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S금천구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 9.4,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S영등포구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S영등포구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 66.4,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S영등포구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 18.2,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S동작구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S동작구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 64.4,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S동작구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 15.6,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S관악구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 7,
+          "load_cbm": 117.4,
+          "capacity_cbm": 119
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_S관악구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 22.0,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S서초구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 5,
+          "load_cbm": 84.8,
+          "capacity_cbm": 85
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S서초구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 17.2,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강남구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강남구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 5,
+          "load_cbm": 82.6,
+          "capacity_cbm": 85
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강남구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강남구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 16.4,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S송파구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S송파구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 6,
+          "load_cbm": 100.2,
+          "capacity_cbm": 102
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S송파구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S송파구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 15.6,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강동구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강동구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 66.6,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강동구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_S강동구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 15.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I중구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 33.8,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I중구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 7.4,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I동구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 13.0,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I동구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 3.0,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I미추홀구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 5,
+          "load_cbm": 84.8,
+          "capacity_cbm": 85
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I미추홀구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I미추홀구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 14.4,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I연수구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I연수구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 49.8,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I연수구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I연수구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 14.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I남동구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 5,
+          "load_cbm": 70,
+          "capacity_cbm": 70
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I남동구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 50.4,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I남동구",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I남동구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 16.4,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I부평구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 7,
+          "load_cbm": 117.2,
+          "capacity_cbm": 119
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I부평구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 24.2,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I계양구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 67.2,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I계양구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 15.0,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I서구",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I서구",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 6,
+          "load_cbm": 100.2,
+          "capacity_cbm": 102
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I서구",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I서구",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 14.4,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I강화군",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 17.6,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I옹진군",
+          "group": "normal",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 5.2,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_I옹진군",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 1.0,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K수원시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K수원시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 14,
+          "load_cbm": 236.8,
+          "capacity_cbm": 238
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K수원시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K수원시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 14.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K고양시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K고양시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 15,
+          "load_cbm": 253.4,
+          "capacity_cbm": 255
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K고양시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 4,
+          "load_cbm": 53.6,
+          "capacity_cbm": 56
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K용인시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K용인시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 12,
+          "load_cbm": 204,
+          "capacity_cbm": 204
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K용인시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K용인시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 16.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K성남시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K성남시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 13,
+          "load_cbm": 208.6,
+          "capacity_cbm": 221
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K성남시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K성남시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 28.6,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC08",
+          "customer_id": "C_K화성시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC08",
+          "customer_id": "C_K화성시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 12,
+          "load_cbm": 202.6,
+          "capacity_cbm": 204
+        },
+        {
+          "facility_id": "DC08",
+          "customer_id": "C_K화성시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 37.8,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_K부천시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 11,
+          "load_cbm": 186.4,
+          "capacity_cbm": 187
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_K부천시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 31.2,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K남양주시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 11,
+          "load_cbm": 185.4,
+          "capacity_cbm": 187
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K남양주시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 32.4,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC08",
+          "customer_id": "C_K안산시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 8,
+          "load_cbm": 135.8,
+          "capacity_cbm": 136
+        },
+        {
+          "facility_id": "DC08",
+          "customer_id": "C_K안산시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 26.0,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K평택시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 4,
+          "load_cbm": 56,
+          "capacity_cbm": 56
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K평택시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 4,
+          "load_cbm": 66.8,
+          "capacity_cbm": 68
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K평택시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K안양시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K안양시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 7,
+          "load_cbm": 108.2,
+          "capacity_cbm": 119
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K안양시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K안양시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 11.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K시흥시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 7,
+          "load_cbm": 116.2,
+          "capacity_cbm": 119
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K시흥시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K시흥시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 7.8,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K파주시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 4,
+          "load_cbm": 56,
+          "capacity_cbm": 56
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K파주시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 49.2,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K파주시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 23.2,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_K김포시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 6,
+          "load_cbm": 101.8,
+          "capacity_cbm": 102
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_K김포시",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC05",
+          "customer_id": "C_K김포시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 13.6,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K의정부시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 5,
+          "load_cbm": 70,
+          "capacity_cbm": 70
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K의정부시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 33.6,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K의정부시",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K의정부시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 17,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K광주시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K광주시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 50.2,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K광주시",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 6,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K광주시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 12.8,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K하남시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K하남시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 49.6,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K하남시",
+          "group": "premium",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 15.8,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K광명시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K광명시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 34,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K광명시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 13.4,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K양주시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 42,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K양주시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 16.4,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K양주시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 11.8,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K군포시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K군포시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 45.2,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K군포시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 12.0,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K오산시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K오산시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 3,
+          "load_cbm": 40.2,
+          "capacity_cbm": 51
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K오산시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 11.0,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K이천시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K이천시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 32.4,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K이천시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 11.6,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K구리시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 3,
+          "load_cbm": 41.0,
+          "capacity_cbm": 42
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K구리시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 7.6,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K안성시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 28,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K안성시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 16.8,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K안성시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 8.4,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC08",
+          "customer_id": "C_K의왕시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 32.0,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC08",
+          "customer_id": "C_K의왕시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 7.4,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K포천시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 2,
+          "load_cbm": 32.6,
+          "capacity_cbm": 34
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K포천시",
+          "group": "premium",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 7.0,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K양평군",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 26.8,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC10",
+          "customer_id": "C_K여주시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 27.6,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K동두천시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K동두천시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 9.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K동두천시",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 4.4,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K과천시",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 14,
+          "capacity_cbm": 14
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K과천시",
+          "group": "normal",
+          "vehicle_id": "3.5t",
+          "trips": 1,
+          "load_cbm": 5.2,
+          "capacity_cbm": 17
+        },
+        {
+          "facility_id": "DC01",
+          "customer_id": "C_K과천시",
+          "group": "premium",
+          "vehicle_id": "1t",
+          "trips": 1,
+          "load_cbm": 3.2,
+          "capacity_cbm": 6
+        },
+        {
+          "facility_id": "DC02",
+          "customer_id": "C_K가평군",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 2,
+          "load_cbm": 14.6,
+          "capacity_cbm": 28
+        },
+        {
+          "facility_id": "DC09",
+          "customer_id": "C_K연천군",
+          "group": "normal",
+          "vehicle_id": "2.5t",
+          "trips": 1,
+          "load_cbm": 9.0,
+          "capacity_cbm": 14
+        }
+      ],
+      "facilities": [
+        {
+          "id": "DC01",
+          "units": 6246,
+          "load_cbm": 1634.0,
+          "share": 0.23055649621853488
+        },
+        {
+          "id": "DC02",
+          "units": 6490,
+          "load_cbm": 1711.6,
+          "share": 0.24150581329721188
+        },
+        {
+          "id": "DC03",
+          "units": 0,
+          "load_cbm": 0.0,
+          "share": 0.0
+        },
+        {
+          "id": "DC04",
+          "units": 0,
+          "load_cbm": 0.0,
+          "share": 0.0
+        },
+        {
+          "id": "DC05",
+          "units": 4503,
+          "load_cbm": 1174.2,
+          "share": 0.16567897053843553
+        },
+        {
+          "id": "DC06",
+          "units": 0,
+          "load_cbm": 0.0,
+          "share": 0.0
+        },
+        {
+          "id": "DC07",
+          "units": 0,
+          "load_cbm": 0.0,
+          "share": 0.0
+        },
+        {
+          "id": "DC08",
+          "units": 1730,
+          "load_cbm": 455.6,
+          "share": 0.06428490800316063
+        },
+        {
+          "id": "DC09",
+          "units": 3000,
+          "load_cbm": 797.6,
+          "share": 0.11254091883959817
+        },
+        {
+          "id": "DC10",
+          "units": 5035,
+          "load_cbm": 1314.2,
+          "share": 0.18543289310305905
+        }
+      ]
+    }
+  ],
+  "status": "feasible_limit",
+  "message": "제한 시간에 도달했습니다. 독립 검산을 통과한 실행 가능해이며 최적성은 미증명입니다.",
+  "mip_gap": 0.0362958919485594,
+  "runtime_seconds": 30.104542,
+  "diagnostics": [
+    "MILP 정수변수 6,808개, 선형 제약 8,855개.",
+    "Solver: Time limit reached. (HiGHS Status 13: Time limit reached)"
+  ],
+  "applied_constraints": [
+    {
+      "id": "max-dcs",
+      "type": "max_dcs",
+      "enabled": true,
+      "value": 10.0,
+      "facility_id": null,
+      "customer_id": null,
+      "vehicle_id": null
+    },
+    {
+      "id": "premium-distance",
+      "type": "premium_distance",
+      "enabled": true,
+      "value": 30.0,
+      "facility_id": null,
+      "customer_id": null,
+      "vehicle_id": null
+    },
+    {
+      "id": "analysis-capacity",
+      "type": "capacity",
+      "enabled": true,
+      "value": 1776.75,
+      "facility_id": null,
+      "customer_id": null,
+      "vehicle_id": null
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "errors": []
+  }
+}
