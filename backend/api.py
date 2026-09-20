@@ -34,6 +34,11 @@ def get_audit():
     return default_scenario()[1]
 
 
+@app.post("/api/validate")
+def validate_scenario(scenario: Scenario):
+    return scenario
+
+
 @app.post("/api/upload")
 def upload(file: UploadFile = File(...), sheet: str | None = Form(None), mapping: str | None = Form(None)):
     if not (file.filename or "").lower().endswith(".xlsx"):
