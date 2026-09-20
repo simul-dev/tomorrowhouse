@@ -8,7 +8,9 @@ from copy import deepcopy
 from itertools import product
 from math import ceil, pi
 
+import numpy as np
 import pytest
+from scipy.optimize import milp
 
 from backend.optimizer import solve
 from backend.schemas import Scenario
@@ -417,3 +419,94 @@ def test_independent_validator_rejects_quantity_capacity_opening_and_cost_tamper
         checked = as_dict(validate_result(scenario, changed))
         assert not checked["passed"], f"Validator accepted tampering: {label}"
         assert checked["errors"], f"Validator omitted diagnostic: {label}"
+
+
+def test_solver_time_limit_without_incumbent_returns_no_solution():
+    def limit_without_incumbent(**_):
+        return {"status": 1, "x": None, "message": "Time limit without incumbent"}
+
+    result = solve(model(base_payload()), solver=limit_without_incumbent)
+    assert result["status"] == "no_solution"
+    assert result["objective"] is None
+    assert result["periods"] == []
+    assert not result["validation"]["passed"]
+
+
+def test_solver_fractional_relaxation_is_not_exported_as_integer_incumbent():
+    def fractional_relaxation(**kwargs):
+        return {"status": 1, "x": np.full(len(kwargs["c"]), 0.5),
+                "message": "Only fractional relaxation available"}
+
+    result = solve(model(base_payload()), solver=fractional_relaxation)
+    assert result["status"] == "no_solution"
+    assert result["objective"] is None
+    assert result["open_facilities"] == []
+    assert result["periods"] == []
+
+
+def test_solver_integer_but_infeasible_incumbent_is_rejected_by_independent_audit():
+    def invalid_integer_incumbent(**kwargs):
+        # Within every variable's bounds and integral, but violates demand.
+        return {"status": 0, "x": np.zeros(len(kwargs["c"])),
+                "message": "Incorrect solver success", "mip_gap": 0}
+
+    result = solve(model(base_payload()), solver=invalid_integer_incumbent)
+    assert result["status"] == "error"
+    assert result["objective"] is None
+    assert result["periods"] == []
+    assert not result["validation"]["passed"]
+    assert result["validation"]["errors"]
+
+
+def test_solver_time_limit_with_real_feasible_incumbent_keeps_audited_solution():
+    def limited_real_solver(**kwargs):
+        answer = milp(**kwargs)
+        assert answer.status == 0
+        assert answer.x is not None
+        answer.status = 1
+        answer.message = "Injected time limit after obtaining a real incumbent"
+        answer.mip_gap = 0.125
+        return answer
+
+    scenario = model(base_payload())
+    result = solve(scenario, solver=limited_real_solver)
+    assert result["status"] == "feasible_limit"
+    assert result["mip_gap"] == pytest.approx(0.125)
+    assert result["objective"] == pytest.approx(105_400)
+    assert result["validation"]["passed"]
+    assert validate_result(scenario, result)["passed"]
+
+
+def test_solver_failure_status_is_error_even_if_an_incumbent_is_attached():
+    def failed_solver(**kwargs):
+        answer = milp(**kwargs)
+        assert answer.x is not None
+        answer.status = 4
+        answer.message = "Injected numerical failure"
+        return answer
+
+    result = solve(model(base_payload()), solver=failed_solver)
+    assert result["status"] == "error"
+    assert result["objective"] is None
+    assert result["periods"] == []
+    assert not result["validation"]["passed"]
+
+
+def test_custom_distance_provider_is_shared_by_cost_and_independent_validation():
+    calls = []
+
+    def custom_road_distance(lat1, lon1, lat2, lon2):
+        calls.append((lat1, lon1, lat2, lon2))
+        return 7.5
+
+    scenario = model(base_payload())
+    result = solve(scenario, distance_provider=custom_road_distance)
+    assert result["status"] == "optimal", result
+    assert result["validation"]["passed"], result["validation"]
+    assert len(calls) >= 2, "Construction and independent audit must both use the provider."
+    assert assignment(result)["distance_km"] == pytest.approx(7.5)
+    assert result["objective"] == pytest.approx(105_400 + 7_500)
+    assert period(result)["kpis"]["total_distance_km"] == pytest.approx(15)
+    assert validate_result(scenario, result, distance_provider=custom_road_distance)["passed"]
+    # Coordinates coincide: checking road-distance output with Haversine must fail.
+    assert not validate_result(scenario, result)["passed"]

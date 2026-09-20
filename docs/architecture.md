@@ -10,6 +10,8 @@ Solver와 거리엔진은 Python 호출 경계로 분리한다. Haversine의 `di
 
 ## Scenario JSON 계약
 
+`backend/patterns.py`는 결합 자원제약이 없는 시나리오에 정확 DP→축약 MILP를 적용한다. 그 외에는 전체 희소 MILP를 유지한다. `solve(..., solver=...)`로 Solver adapter, `solve(..., distance_provider=...)`로 거리 공급자를 주입할 수 있다. 대체 거리로 생성한 결과의 독립 검산에도 같은 공급자를 전달한다.
+
 ```json
 {
   "name": "Base · 2027",

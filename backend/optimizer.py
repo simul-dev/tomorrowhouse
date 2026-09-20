@@ -16,6 +16,7 @@ from scipy.optimize import Bounds, LinearConstraint, milp
 from scipy.sparse import coo_matrix
 
 from .distance import DistanceProvider, haversine_km
+from .patterns import build_pattern_reduction
 from .schemas import PRODUCTS, VOLUMES, Scenario
 from .validation import validate_result
 
@@ -100,6 +101,8 @@ def solve(scenario: Scenario | dict, solver: Callable | None = None,
     The solver boundary accepts ``c, integrality, bounds, constraints, options``
     and returns an object with ``status, x, message, mip_gap`` attributes. This
     permits alternate adapters and deterministic tests of time-limit behavior.
+    A supplied solver receives the full formulation. The default solver uses
+    exact lane-pattern reduction when there are no coupled lane constraints.
     """
     start = perf_counter()
     active = []
@@ -111,17 +114,22 @@ def solve(scenario: Scenario | dict, solver: Callable | None = None,
         diagnostics = _diagnostic_hints(data, active)
         distance_provider = distance_provider or haversine_km
         model, distances, demand, groups, _ = _build_model(data, active, distance_provider)
+        reduction = build_pattern_reduction(data, active, model, distances, demand, groups) if solver is None else None
+        solve_model = reduction.model if reduction is not None else model
+        if reduction is not None:
+            diagnostics.append(f"정확한 운송구간 DP 축약(exact lane DP reduction): {len(reduction.plans):,}개 운송 계획, "
+                               f"변수 {len(model.cost):,} → {len(solve_model.cost):,}. 원모형과 동치입니다.")
         answer = (solver or milp)(
-            c=np.asarray(model.cost),
-            integrality=np.ones(len(model.cost), dtype=np.uint8),
-            bounds=Bounds(np.zeros(len(model.cost)), np.asarray(model.upper)),
-            constraints=model.linear_constraint(),
+            c=np.asarray(solve_model.cost),
+            integrality=np.ones(len(solve_model.cost), dtype=np.uint8),
+            bounds=Bounds(np.zeros(len(solve_model.cost)), np.asarray(solve_model.upper)),
+            constraints=solve_model.linear_constraint(),
             options={"time_limit": data["parameters"]["time_limit"],
                      "mip_rel_gap": data["parameters"]["mip_rel_gap"], "presolve": True},
         )
         read = lambda key, default=None: answer.get(key, default) if isinstance(answer, dict) else getattr(answer, key, default)
         code = read("status", 4)
-        diagnostics.append(f"MILP 정수변수 {len(model.cost):,}개, 선형 제약 {len(model.lower_rows):,}개.")
+        diagnostics.append(f"MILP 정수변수 {len(solve_model.cost):,}개, 선형 제약 {len(solve_model.lower_rows):,}개.")
         diagnostics.append(f"Solver: {read('message', '상태 메시지 없음')}")
         if code == 2:
             diagnostics.append("진단은 제약 충돌의 추정 힌트이며 IIS 증명이 아닙니다. 충족률·거리·차량 회차·용량·예산을 함께 확인하세요.")
@@ -132,13 +140,15 @@ def solve(scenario: Scenario | dict, solver: Callable | None = None,
         if raw is None:
             return _blank_result(start, "no_solution", "제한 시간 내 실행 가능한 정수해를 찾지 못했습니다.", active, diagnostics)
         values = np.asarray(raw, dtype=float)
-        if values.shape != (len(model.cost),) or not np.all(np.isfinite(values)):
+        if values.shape != (len(solve_model.cost),) or not np.all(np.isfinite(values)):
             return _blank_result(start, "error", "Solver가 유효하지 않은 해 벡터를 반환했습니다.", active, diagnostics)
         if np.max(np.abs(values - np.rint(values)), initial=0) > 1e-4:
             return _blank_result(start, "no_solution", "정수 조건을 만족하는 incumbent가 없어 결과를 반환하지 않습니다.", active, diagnostics)
         values = np.rint(values).astype(np.int64)
-        if np.any(values < 0) or np.any(values > np.asarray(model.upper) + 1e-6):
+        if np.any(values < 0) or np.any(values > np.asarray(solve_model.upper) + 1e-6):
             return _blank_result(start, "error", "Solver 해가 변수 범위를 벗어났습니다.", active, diagnostics)
+        if reduction is not None:
+            values = reduction.expand(values)
         gap_raw = read("mip_gap")
         gap = float(gap_raw) if gap_raw is not None and isfinite(float(gap_raw)) else None
         if code == 0:
