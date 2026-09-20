@@ -1,0 +1,20 @@
+{
+  "original_git_commit": "c8b0790",
+  "original_worktree": "clean",
+  "files": {
+    "GLR_CASE_내일의집_수요정보.xlsx": "eaa353cce85f97b951933e58519c5bd8b8427da19b374471033fe239a2eedada",
+    "NET_CASE_네트워크설계_내일의집.pdf": "8229a89f34893841fd4fc5d66af391942cbe04ad09fdb728b3f345852cfc1696"
+  },
+  "sheet": "Sheet1",
+  "range": "A1:G67",
+  "customers": 66,
+  "population": 26120000,
+  "demand": {"large": 2108, "small": 19070, "premium": 5925},
+  "total_units": 27103,
+  "total_cbm": 7107,
+  "missing_cells": 0,
+  "duplicate_ids": 0,
+  "duplicate_coordinates": 0,
+  "formulas": 0,
+  "validation_methods": ["independent ZIP/XML extraction", "openpyxl data_only cell read", "pypdf page-by-page requirement extraction"]
+}
