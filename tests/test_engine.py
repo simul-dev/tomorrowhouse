@@ -510,3 +510,77 @@ def test_custom_distance_provider_is_shared_by_cost_and_independent_validation()
     assert validate_result(scenario, result, distance_provider=custom_road_distance)["passed"]
     # Coordinates coincide: checking road-distance output with Haversine must fail.
     assert not validate_result(scenario, result)["passed"]
+
+
+def custom(terms, operator, rhs, rule_id="custom-rule"):
+    return {"id": rule_id, "type": "custom", "enabled": True,
+            "operator": operator, "rhs": rhs, "terms": terms}
+
+
+def term(metric, coefficient=1, **scope):
+    return {"metric": metric, "coefficient": coefficient, **scope}
+
+
+def test_custom_open_count_reproduces_the_min_dcs_template_exactly():
+    """The custom builder and the dedicated template must agree, although only
+    the template keeps the exact lane reduction active."""
+    payload = base_payload()
+    add_facility(payload)
+    payload["constraints"] = [constraint("min_dcs", 2)]
+    template_result = solved(payload)
+    payload["constraints"] = [custom([term("open")], ">=", 2)]
+    custom_result = solved(payload)
+    assert set(custom_result["open_facilities"]) == {"A", "B"}
+    assert custom_result["objective"] == pytest.approx(template_result["objective"])
+    assert custom_result["objective"] == pytest.approx(115_400)
+
+
+def test_custom_term_coefficients_price_vehicles_against_a_shared_allowance():
+    # Weighted trip budget: a 10 CBM trip costs 5 of the 4 available units, so
+    # the 8 CBM demand must move on two 6 CBM trips instead of one 10 CBM trip.
+    payload = base_payload()
+    payload["constraints"] = [custom(
+        [term("trips", 5, vehicle_id="v10"), term("trips", 1, vehicle_id="v6")], "<=", 4)]
+    result = solved(payload)
+    assert period(result)["kpis"]["trips_by_vehicle"] == {"v6": 2, "v10": 0}
+    assert result["objective"] == pytest.approx(10_000 + 400 + 2 * 60_000)
+
+
+def test_custom_volume_bound_is_infeasible_below_mandatory_demand():
+    payload = base_payload()
+    payload["constraints"] = [custom([term("cbm")], ">=", 8)]
+    assert solved(payload)["objective"] == pytest.approx(105_400)
+    payload["constraints"] = [custom([term("cbm")], "<=", 5)]
+    assert_infeasible(payload)
+
+
+def test_custom_unmet_bound_applies_per_product_filter():
+    payload = base_payload()
+    payload["parameters"]["allow_unmet"] = True
+    payload["customers"][0]["demand"] = {"large": 8, "small": 0, "premium": 0}
+    # A single large unit costs 20+30 to serve and 200,000 to abandon, so the
+    # unconstrained optimum ships everything; the equality forces two unmet.
+    payload["constraints"] = [custom([term("unmet", product="large")], "==", 2)]
+    result = solved(payload)
+    assert assignment(result)["unmet"] == {"large": 2, "small": 0, "premium": 0}
+    assert period(result)["costs"]["penalty"] == pytest.approx(400_000)
+
+
+def test_custom_rule_is_audited_independently_of_the_solver():
+    payload = base_payload()
+    clean = solved(payload)
+    assert period(clean)["kpis"]["trips_by_vehicle"] == {"v6": 0, "v10": 1}
+    # The same result document, re-audited against a scenario whose custom rule
+    # it violates, must be rejected without re-running the solver.
+    payload["constraints"] = [custom([term("trips", vehicle_id="v10")], "<=", 0)]
+    audit = as_dict(validate_result(model(payload), clean))
+    assert not audit["passed"]
+    assert any("custom-rule" in message for message in audit["errors"]), audit
+
+
+def test_custom_zero_and_negative_right_hand_sides_stay_linear():
+    payload = base_payload()
+    payload["constraints"] = [custom([term("trips", -1)], ">=", -2)]
+    assert solved(payload)["objective"] == pytest.approx(105_400)
+    payload["constraints"] = [custom([term("trips", -1)], ">=", 0)]
+    assert_infeasible(payload)

@@ -116,6 +116,28 @@ def main():
         assert all(c["type"]!="premium_distance" for c in relaxed["applied_constraints"])
         page.get_by_label("프리미엄 배송거리 기본값 복원",exact=True).click()
         expect(page.get_by_label("프리미엄 배송거리 활성화",exact=True)).to_be_checked()
+        # A policy the twelve templates cannot state: cap the premium shortfall
+        # only. The cap is derived from the unconstrained optimum of this exact
+        # scenario, so the rule is guaranteed to bind rather than sit slack.
+        shortfall = lambda r: sum(a["unmet"]["premium"] for a in r["periods"][0]["assignments"])
+        cap = shortfall(moved) - 10
+        assert cap > 0, "Baseline has too little premium shortfall to bind against."
+        page.get_by_label("제약 템플릿", exact=True).select_option("custom")
+        page.get_by_role("button", name="제약 추가", exact=True).click()
+        rule = page.locator(".constraint-card").last
+        rule.get_by_label("항 1 지표", exact=True).select_option("unmet")
+        rule.get_by_label("항 1 상품", exact=True).select_option("premium")
+        rule.get_by_label("우변 값", exact=True).fill(str(cap))
+        expect(rule.locator(".rule-formula code")).to_have_text(f"미충족 물량(프리미엄) ≤ {cap}")
+        custom, custom_request = run()
+        assert custom["validation"]["passed"], custom
+        applied = [c for c in custom["applied_constraints"] if c["type"] == "custom"]
+        assert len(applied) == 1 and applied[0]["terms"][0]["product"] == "premium", applied
+        assert shortfall(custom) <= cap < shortfall(moved), (shortfall(custom), cap, shortfall(moved))
+        assert not any("축약" in note for note in custom["diagnostics"]), custom["diagnostics"]
+        rule.get_by_label("사용자 정의 제약식 삭제", exact=True).click()
+        steps.append("custom linear rule built in the UI binds the premium shortfall and passes the independent audit")
+
         for value in ("force_open", "forbid_open"):
             page.get_by_label("제약 템플릿",exact=True).select_option(value)
             page.get_by_role("button",name="제약 추가",exact=True).click()

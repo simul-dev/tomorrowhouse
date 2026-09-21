@@ -23,7 +23,7 @@ Solver와 거리엔진은 Python 호출 경계로 분리한다. Haversine의 `di
 }
 ```
 
-제약 type: `min_dcs,max_dcs,capacity,max_distance,premium_distance,force_open,forbid_open,allow_assignment,forbid_assignment,max_trips,min_fulfillment,budget`. 선택 필드 `facility_id,customer_id,vehicle_id`. `capacity`의 value는 전체 DC 공통 상한이며 facility_id 지정 시 해당 DC만, value 미지정 시 DC 자체 capacity_cbm을 사용한다. 거리 customer_id를 지정하면 해당 지역에 적용한다. `min_fulfillment`는 0–1 비율. 알 수 없는 필드/type/참조 ID는 거부한다.
+제약 type: `min_dcs,max_dcs,capacity,max_distance,premium_distance,force_open,forbid_open,allow_assignment,forbid_assignment,max_trips,min_fulfillment,budget,custom`. 선택 필드 `facility_id,customer_id,vehicle_id,label`. `custom`은 `value` 대신 `terms`(최대 40개), `operator`(`<=,>=,==`), `rhs`를 사용한다. 각 term은 `{coefficient, metric, facility_id?, customer_id?, vehicle_id?, product?, group?}`이고 metric은 `open,assigned,units,cbm,unmet,trips,distance`이다. metric이 지원하지 않는 필터, 알 수 없는 참조 ID, terms 없는 custom, custom이 아닌 type의 terms/rhs는 거부한다. 예: `{"id":"premium-floor","type":"custom","enabled":true,"operator":"<=","rhs":100,"terms":[{"coefficient":1,"metric":"unmet","product":"premium"}]}`. `capacity`의 value는 전체 DC 공통 상한이며 facility_id 지정 시 해당 DC만, value 미지정 시 DC 자체 capacity_cbm을 사용한다. 거리 customer_id를 지정하면 해당 지역에 적용한다. `min_fulfillment`는 0–1 비율. 알 수 없는 필드/type/참조 ID는 거부한다.
 
 전역 `parameters.demand_multiplier`와 기간 `periods[].demand_multiplier`는 곱하여 적용한다. 기본 전역 배수 1에서 기간 배수 1.2/1.44/1.728을 사용한다. `transport_cost_weight`는 0보다 커야 한다. 모든 차량 비활성화 시 미충족 허용 여부에 따라 전량미충족 또는 infeasible이다. `max_distance`는 전체 상품에, `premium_distance`는 프리미엄에만 적용한다. 가상 `mixed` 운송비는 `transport_normal`에 집계한다. 평균거리는 출고 CBM 가중 편도거리이다. 할인율은 초기 구현에서 지원하지 않는다.
 

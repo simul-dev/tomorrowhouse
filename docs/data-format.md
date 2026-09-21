@@ -29,7 +29,7 @@ HTTP 업로드는 multipart `file`, 선택 `sheet`, 선택 `mapping` JSON 문자
 
 ## JSON
 
-`backend/schemas.py`가 입력의 권위 있는 스키마다. 알 수 없는 필드·제약 타입·참조 ID, 중복 ID, 부정 비용/용량, 1 미만 또는 소수 CBM 차량은 거부한다. `/docs`에 FastAPI OpenAPI가 제공된다. `POST /api/validate`는 정상화된 Scenario를 반환한다.
+`backend/schemas.py`가 입력의 권위 있는 스키마다. 알 수 없는 필드·제약 타입·참조 ID, 중복 ID, 부정 비용/용량, 1 미만 또는 소수 CBM 차량은 거부한다. 사용자 정의 제약(`type: "custom"`)은 `terms`·`operator`·`rhs`를 사용하며, metric이 지원하지 않는 필터와 항이 없는 제약을 거부한다. 계수와 우변은 음수를 허용한다. `/docs`에 FastAPI OpenAPI가 제공된다. `POST /api/validate`는 정상화된 Scenario를 반환한다.
 
 전역 수요 배수 × 기간별 배수 적용 뒤 상품별 `floor(value+0.5)` 정수화. 비용 원/KRW, 처리량 CBM/일, 미충족 개/일, 충족률 0~1, 거리 km, 차량 회차 회/일이다. 기간 `days`는 비용 누적 가중치이고 수요를 하루 안에 days배로 늘리지 않는다.
 

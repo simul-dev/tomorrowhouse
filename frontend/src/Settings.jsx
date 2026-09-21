@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Warehouse, SlidersHorizontal, Truck, Settings2, Plus, Trash2, MapPin, Check, RotateCcw} from 'lucide-react';
-import {Field, Select, Toggle, Section, Reset} from './components.jsx';
-import {fmt, uid, TEMPLATES} from './utils.js';
+import {Field, Select, Toggle, Section, Reset, Hint} from './components.jsx';
+import {fmt, uid, TEMPLATES, METRICS, FILTER_KEYS, PRODUCT_NAMES, GROUP_NAMES, OPERATORS, emptyTerm, formula} from './utils.js';
 
 export default function Settings({scenario, edit, selected, onSelect, onFacility, deleteDC, addMode, setAddMode, result, busy, defaults}) {
   const [tab, setTab] = useState('facilities');
@@ -14,6 +14,9 @@ export default function Settings({scenario, edit, selected, onSelect, onFacility
     const t = TEMPLATES[type]; const c = {id: uid('rule'), type, enabled: true, value: t.value ?? null};
     if (t.facility && !t.optional) c.facility_id = scenario.facilities[0].id;
     if (t.customer && !t.optional) c.customer_id = scenario.customers[0].id;
+    // A non-binding starting point: adding the rule must not make the current
+    // scenario infeasible before the user has written anything.
+    if (t.builder) {c.value = null; c.operator = '<='; c.rhs = scenario.facilities.length; c.terms = [emptyTerm('open')];}
     return c;
   }
   const applied = new Set((result?.applied_constraints || []).map(c => typeof c === 'string' ? c : c.id));
@@ -41,6 +44,7 @@ export default function Settings({scenario, edit, selected, onSelect, onFacility
           {t.facility && <Select label={`${t.name} 대상 DC`} value={c.facility_id} onChange={v => updateConstraint(c.id, {facility_id: v || null})}>{t.optional && <option value="">전체 DC</option>}{scenario.facilities.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}</Select>}
           {t.customer && <Select label={`${t.name} 대상 지역`} value={c.customer_id} onChange={v => updateConstraint(c.id, {customer_id: v || null})}>{t.optional && <option value="">전체 지역</option>}{scenario.customers.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}</Select>}
           {t.vehicle && <Select label="최대 회차 대상 차종" value={c.vehicle_id} onChange={v => updateConstraint(c.id, {vehicle_id: v || null})}><option value="">모든 차종 합계</option>{scenario.vehicles.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}</Select>}
+          {t.builder && <CustomRule rule={c} scenario={scenario} onChange={patch => updateConstraint(c.id, patch)} />}
           <small className={`applied-state ${applied.has(c.id) ? 'applied' : ''}`}>{applied.has(c.id) ? <><Check size={12} />이번 모델에 반영됨</> : c.enabled ? '다음 최적화에 적용 예정' : '비활성 · 모델에서 제외'}</small>
         </div>; })}
         <p className="helper">배정 허용을 추가하면 해당 지역은 지정한 DC 목록 내에서만 배정됩니다. 서로 충돌하는 조건은 실행 불가능 결과로 안내됩니다.</p>
@@ -72,4 +76,43 @@ export default function Settings({scenario, edit, selected, onSelect, onFacility
     </fieldset>
     <div className="panel-bottom"><span className="dot green" />{scenario.constraints.filter(c => c.enabled).length}개 정책 활성 · 입력 변경 시 결과 재계산</div>
   </aside>;
+}
+
+const BUILDER_HELP = '좌변은 선택한 지표들의 선형 결합입니다. 각 지표(개설 수, 배정, 출고 물량·부피, 미충족, 회차, 운행거리)는 ' +
+  '모형 변수의 합이므로 자유 수식을 문자열로 해석하지 않고도 같은 MILP 안에서 하나의 선형 행으로 들어갑니다. ' +
+  '같은 정의로 결과 문서에서 좌변을 다시 계산해 독립 검산도 수행합니다. 다만 사용자 정의 제약은 구간 독립성을 깨뜨리므로 ' +
+  '정확 DP 축약이 해제되고 전체 MILP를 풀기 때문에 계산시간이 늘어날 수 있습니다.';
+
+function CustomRule({rule, scenario, onChange}) {
+  const terms = rule.terms || [];
+  const setTerm = (index, patch) => onChange({terms: terms.map((t, i) => i === index ? {...t, ...patch} : t)});
+  function setMetric(index, metric) {
+    const allowed = METRICS[metric].filters.map(name => FILTER_KEYS[name]);
+    const scope = Object.fromEntries(Object.values(FILTER_KEYS).map(key => [key, allowed.includes(key) ? terms[index][key] ?? null : null]));
+    setTerm(index, {metric, ...scope});
+  }
+  const pickers = {facility: ['대상 DC', scenario.facilities, '전체 DC'], customer: ['대상 지역', scenario.customers, '전체 지역'], vehicle: ['대상 차종', scenario.vehicles, '전체 차종']};
+  return <div className="rule-builder">
+    <div className="rule-formula"><span>수식</span><code aria-live="polite">{formula(rule, scenario)}</code></div>
+    {terms.map((term, index) => <div className="rule-term" key={index}>
+      <div className="rule-term-head"><span>항 {index + 1}</span><button className="icon-button" aria-label={`항 ${index + 1} 삭제`} disabled={terms.length <= 1} onClick={() => onChange({terms: terms.filter((_, i) => i !== index)})}><Trash2 size={13} /></button></div>
+      <div className="fields-two">
+        <Field label={`항 ${index + 1} 계수`} value={term.coefficient} onChange={v => setTerm(index, {coefficient: v === '' ? 0 : v})} />
+        <Select label={`항 ${index + 1} 지표`} value={term.metric} onChange={v => setMetric(index, v)}>{Object.entries(METRICS).map(([key, m]) => <option key={key} value={key}>{m.name} · {m.unit}</option>)}</Select>
+      </div>
+      {METRICS[term.metric].filters.map(name => {
+        const key = FILTER_KEYS[name];
+        if (name === 'product') return <Select key={key} label={`항 ${index + 1} 상품`} value={term.product ?? ''} onChange={v => setTerm(index, {product: v || null})}><option value="">전체 상품</option>{Object.entries(PRODUCT_NAMES).map(([id, label]) => <option key={id} value={id}>{label}</option>)}</Select>;
+        if (name === 'group') return <Select key={key} label={`항 ${index + 1} 운송군`} value={term.group ?? ''} onChange={v => setTerm(index, {group: v || null})}><option value="">전체 운송군</option>{Object.entries(GROUP_NAMES).map(([id, label]) => <option key={id} value={id}>{label}</option>)}</Select>;
+        const [label, list, anyLabel] = pickers[name];
+        return <Select key={key} label={`항 ${index + 1} ${label}`} value={term[key] ?? ''} onChange={v => setTerm(index, {[key]: v || null})}><option value="">{anyLabel}</option>{list.map(x => <option key={x.id} value={x.id}>{x.name}</option>)}</Select>;
+      })}
+    </div>)}
+    <button className="text-button" disabled={terms.length >= 40} onClick={() => onChange({terms: [...terms, emptyTerm('trips')]})}><Plus size={14} />항 추가</button>
+    <div className="fields-two">
+      <Select label="부등호" value={rule.operator} onChange={v => onChange({operator: v})}>{Object.entries(OPERATORS).map(([key, sign]) => <option key={key} value={key}>{sign}</option>)}</Select>
+      <Field label="우변 값" value={rule.rhs} onChange={v => onChange({rhs: v === '' ? 0 : v})} />
+    </div>
+    <Hint text={BUILDER_HELP} label="사용자 정의 제약식 동작 설명"><span className="rule-note">선형 결합으로 모형에 직접 추가 · DP 축약 해제</span></Hint>
+  </div>;
 }

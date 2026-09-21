@@ -36,6 +36,7 @@ class _Model:
         self.values: list[float] = []
         self.lower_rows: list[float] = []
         self.upper_rows: list[float] = []
+        self.notes: list[str] = []
 
     def variable(self, key, upper, cost=0.0):
         idx = len(self.cost)
@@ -114,6 +115,7 @@ def solve(scenario: Scenario | dict, solver: Callable | None = None,
         diagnostics = _diagnostic_hints(data, active)
         distance_provider = distance_provider or haversine_km
         model, distances, demand, groups, _ = _build_model(data, active, distance_provider)
+        diagnostics.extend(model.notes)
         reduction = build_pattern_reduction(data, active, model, distances, demand, groups) if solver is None else None
         solve_model = reduction.model if reduction is not None else model
         if reduction is not None:
@@ -170,6 +172,42 @@ def solve(scenario: Scenario | dict, solver: Callable | None = None,
         return result
     except Exception as exc:
         return _blank_result(start, "error", f"최적화 오류: {type(exc).__name__}: {exc}", active, diagnostics)
+
+
+def _term_entries(term, position, t, index, ids, groups, distances, counts):
+    """Expand one custom-constraint term into (column, coefficient) pairs.
+
+    Every metric is a linear aggregate of the model variables, so a custom rule
+    stays inside the same MILP and needs no expression parser or evaluation of
+    user-supplied code. ``counts`` records how many columns each metric matched
+    so an empty left-hand side can be reported instead of silently reading 0.
+    """
+    coefficient = term["coefficient"]
+    metric = term["metric"]
+    facilities, customers, vehicles = ids
+    keep_f = [i for i, fid in enumerate(facilities) if term["facility_id"] in (None, fid)]
+    keep_c = [j for j, cid in enumerate(customers) if term["customer_id"] in (None, cid)]
+    keep_v = [k for k, vid in enumerate(vehicles) if term["vehicle_id"] in (None, vid)]
+    keep_p = [p for p in PRODUCTS if term["product"] in (None, p)]
+    keep_g = [g for g in groups if term["group"] in (None, g)]
+    entries = []
+    if metric == "open":
+        entries = [(index["y", i], coefficient) for i in keep_f]
+    elif metric == "assigned":
+        entries = [(index["a", t, i, j], coefficient) for i in keep_f for j in keep_c]
+    elif metric in ("units", "cbm"):
+        entries = [(index["q", t, i, j, p], coefficient * (VOLUMES[p] if metric == "cbm" else 1))
+                   for i in keep_f for j in keep_c for p in keep_p]
+    elif metric == "unmet":
+        entries = [(index["u", t, j, p], coefficient) for j in keep_c for p in keep_p]
+    elif metric in ("trips", "distance"):
+        entries = [(index["n", t, i, j, g, k],
+                    coefficient * (2 * distances[i, j] if metric == "distance" else 1))
+                   for i in keep_f for j in keep_c for g in keep_g for k in keep_v]
+    # Keyed per term, not per metric, so one populated term cannot mask an
+    # empty sibling that happens to use the same metric.
+    counts[position, metric] = counts.get((position, metric), 0) + len(entries)
+    return entries
 
 
 def _build_model(data, active, distance_provider):
@@ -276,6 +314,19 @@ def _build_model(data, active, distance_provider):
         elif kind == "budget":
             for t in daily_cost:
                 model.row([(var, cost / MONEY_SCALE) for var, cost in daily_cost[t]], upper=value / MONEY_SCALE)
+        elif kind == "custom":
+            ids = ([f["id"] for f in fs], [c["id"] for c in cs], [v["id"] for v in vs])
+            rhs, operator = con["rhs"], con["operator"]
+            lower = rhs if operator in (">=", "==") else -np.inf
+            upper = rhs if operator in ("<=", "==") else np.inf
+            matched = {}
+            for t in daily_cost:
+                entries = [entry for position, term in enumerate(con["terms"], 1)
+                           for entry in _term_entries(term, position, t, idx, ids, groups, distances, matched)]
+                model.row(entries, lower=lower, upper=upper)
+            empty = [f"항 {position}({metric})" for (position, metric), n in sorted(matched.items()) if n == 0]
+            if empty:
+                model.notes.append(f"{con['id']}: {', '.join(empty)}이 선택한 필터에서 어떤 변수도 포함하지 않아 0으로 계산됩니다.")
     return model, distances, demand, groups, daily_cost
 
 

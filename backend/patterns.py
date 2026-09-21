@@ -19,7 +19,7 @@ from math import inf
 import numpy as np
 
 
-_COUPLED_TYPES = {"capacity", "max_trips", "min_fulfillment", "budget"}
+_COUPLED_TYPES = {"capacity", "max_trips", "min_fulfillment", "budget", "custom"}
 _PRODUCTS = ("large", "small", "premium")
 _VOLUME_FIFTHS = {"large": 5, "small": 1, "premium": 1}
 _LOAD_ORDER = ("small", "premium", "large")

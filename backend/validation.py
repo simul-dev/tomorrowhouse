@@ -11,10 +11,50 @@ from math import ceil, floor, isclose, isfinite
 from numbers import Real
 
 from .distance import DistanceProvider, haversine_km
-from .schemas import Scenario
+from .schemas import Constraint, Scenario
 
 _PRODUCT_VOLUME = {"large": 1.0, "small": 0.2, "premium": 0.2}
 _EPS = 1e-6
+
+
+def _custom_lhs(terms, opened, assignment, trips, distance):
+    """Recompute a custom constraint's left-hand side from the result document.
+
+    The model builder reads the same aggregates off the MILP columns; this one
+    reads them off the published assignments, unmet counts and trip rows, so a
+    corrupted result cannot satisfy a user rule it actually violates.
+    """
+    lhs = 0.0
+    for term in terms:
+        metric, coefficient = term["metric"], term["coefficient"]
+        f_ref, c_ref = term["facility_id"], term["customer_id"]
+        v_ref, p_ref, g_ref = term["vehicle_id"], term["product"], term["group"]
+        amount = 0.0
+        if metric == "open":
+            amount = sum(1 for fid in opened if f_ref in (None, fid))
+        elif metric in ("assigned", "units", "cbm"):
+            for cid, a in assignment.items():
+                fid = a["facility_id"]
+                if fid is None or f_ref not in (None, fid) or c_ref not in (None, cid):
+                    continue
+                if metric == "assigned":
+                    amount += 1
+                    continue
+                for p, volume in _PRODUCT_VOLUME.items():
+                    if p_ref in (None, p):
+                        amount += a["quantities"][p] * (volume if metric == "cbm" else 1)
+        elif metric == "unmet":
+            for cid, a in assignment.items():
+                if c_ref in (None, cid):
+                    amount += sum(a["unmet"][p] for p in _PRODUCT_VOLUME if p_ref in (None, p))
+        elif metric in ("trips", "distance"):
+            for row in trips:
+                if (f_ref in (None, row["facility_id"]) and c_ref in (None, row["customer_id"])
+                        and v_ref in (None, row["vehicle_id"]) and g_ref in (None, row["group"])):
+                    span = 2 * distance[row["facility_id"], row["customer_id"]] if metric == "distance" else 1
+                    amount += row["trips"] * span
+        lhs += coefficient * amount
+    return lhs
 
 
 def validate_result(scenario: Scenario | dict, result: dict,
@@ -223,7 +263,42 @@ def _audit(data, result, errors, distance_provider):
                 check(fulfilled + _EPS >= value * total_demand, f"{label}/{con['id']}: 최소 수요 충족률 위반")
             elif kind == "budget":
                 check(costs["total"] <= value + max(0.05, value * 1e-8), f"{label}/{con['id']}: 일별 예산 위반")
+            elif kind == "custom":
+                rhs, operator = con["rhs"], con["operator"]
+                lhs = _custom_lhs(con["terms"], opened, assignment, period["trips"], distance)
+                slack = max(1e-6, (abs(rhs) + abs(lhs)) * 1e-9)
+                satisfied = (lhs <= rhs + slack if operator == "<=" else
+                             lhs >= rhs - slack if operator == ">=" else abs(lhs - rhs) <= slack)
+                check(satisfied, f"{label}/{con['id']}: 사용자 정의 제약 위반 "
+                                 f"(좌변 {lhs:,.6g} {operator} 우변 {rhs:,.6g})")
         objective += costs["total"] * source["days"]
     near(result["objective"], objective, "운영일수 가중 총 목적함수", 0.05)
     if "applied_constraints" in result:
-        check(result["applied_constraints"] == active, "적용 제약 목록이 입력의 활성 제약과 다릅니다.")
+        _audit_applied_constraints(result["applied_constraints"], active, check)
+
+
+def _audit_applied_constraints(reported, active, check):
+    """Compare the reported rules with the input's active rules.
+
+    A result written before a schema field existed simply omits that field, so
+    a plain equality test would reject every stored result after any schema
+    growth. A missing field is therefore accepted only when the input leaves it
+    at its declared default, which still rejects a report that drops a field
+    carrying real content, such as a custom rule's terms.
+    """
+    defaults = {name: field.get_default(call_default_factory=True)
+                for name, field in Constraint.model_fields.items()}
+    check(isinstance(reported, list) and len(reported) == len(active),
+          "적용 제약 수가 입력의 활성 제약과 다릅니다.")
+    if not isinstance(reported, list):
+        return
+    for row, expected in zip(reported, active):
+        if not isinstance(row, dict):
+            check(False, "적용 제약 항목이 객체가 아닙니다.")
+            continue
+        label = row.get("id", "?")
+        unexpected = sorted(set(row) - set(expected))
+        check(not unexpected, f"적용 제약 {label}: 알 수 없는 항목 {unexpected}")
+        for key, value in expected.items():
+            check(row[key] == value if key in row else value == defaults.get(key),
+                  f"적용 제약 {label}: {key} 불일치")

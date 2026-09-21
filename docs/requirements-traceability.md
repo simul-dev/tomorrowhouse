@@ -18,6 +18,8 @@
 | 안전한 입력·내보내기 | Pydantic, Excel validation, server audit | invalid type/NaN/metadata/extra cost regression |
 | GIS 후보 편집·레이어·수요 조회 | frontend/src/NetworkMap.jsx, Settings.jsx | 브라우저 기능 검증 |
 | 정책12종/차량/파라미터/상태 | Settings.jsx, API solve | 엔진 템플릿 단위테스트+브라우저 흐름 |
+| 템플릿 외 정책의 사용자 정의 제약 | schemas.Term, optimizer._term_entries, Settings.CustomRule | 템플릿 동치·계수·0/음수 우변·독립검산 거부 테스트 |
+| 문제유형(UFLP+TA)·해법 단계 제시 | frontend/src/Overview.jsx | 브라우저 흐름에서 툴팁 표시 확인 |
 | KPI·비용·배정·차량·DC 표 | Results.jsx | 엔진 독립검산+화면 결과 확인 |
 | 시나리오 저장·복제·비교·백업 | frontend 앱/localStorage | 브라우저 저장·복제·재로딩·JSON 검증 |
 | Excel 업로드·결과 다운로드 | API upload/export + 웹 UI | API 실제 XLSX 읽기+브라우저 파일 흐름 |

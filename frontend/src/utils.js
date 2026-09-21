@@ -6,7 +6,7 @@ export const clone = obj => structuredClone(obj);
 export const total = demand => Object.values(demand).reduce((s, n) => s + n, 0);
 export const cbm = demand => demand.large + .2 * (demand.small + demand.premium);
 export const STATUS = {optimal: '최적화 완료', feasible_limit: '시간 제한 · 실행가능해', infeasible: '실행 불가능', no_solution: '시간 내 해 없음', error: '검증 / 계산 오류'};
-export const COSTS = [['fixed', '거점 개설비', '#164c41'], ['handling', '처리비', '#85a891'], ['inbound', 'CDC 공급비', '#b6cbb6'], ['transport_normal', '일반 운송비', '#739faf'], ['transport_premium', '프리미엄 운송비', '#d69b50'], ['penalty', '미충족 패널티', '#c56958']];
+export const COSTS = [['fixed', '거점 개설비', '#12325e'], ['handling', '처리비', '#2f6fd0'], ['inbound', 'CDC 공급비', '#7fa8e0'], ['transport_normal', '일반 운송비', '#e0a020'], ['transport_premium', '프리미엄 운송비', '#b5730a'], ['penalty', '미충족 패널티', '#c0392b']];
 export const validResult = r => !!r && ['optimal', 'feasible_limit'].includes(r.status) && r.validation?.passed === true;
 export function explainError(detail) {
   if (typeof detail === 'string') return detail;
@@ -39,4 +39,46 @@ export const TEMPLATES = {
   max_trips: {name: '차종 최대 회차', value: 500, unit: '회/일', integer: true, vehicle: true, optional: true},
   min_fulfillment: {name: '수요 충족률 하한', value: 1, unit: '비율 (0~1)', max: 1},
   budget: {name: '일별 예산 한도', value: 1000000000, unit: '원/일'},
+  custom: {name: '사용자 정의 제약식', builder: true},
 };
+
+// Mirrors METRIC_FILTERS in backend/schemas.py. Every metric is a linear
+// aggregate of the model variables, so the builder never needs an expression
+// parser and the server can re-derive the same value from a result document.
+export const METRICS = {
+  open: {name: '개설 DC 수', unit: '개', filters: ['facility']},
+  assigned: {name: '배정 지역 수', unit: '개', filters: ['facility', 'customer']},
+  units: {name: '출고 물량', unit: '개', filters: ['facility', 'customer', 'product']},
+  cbm: {name: '출고 부피', unit: 'CBM', filters: ['facility', 'customer', 'product']},
+  unmet: {name: '미충족 물량', unit: '개', filters: ['customer', 'product']},
+  trips: {name: '차량 회차', unit: '회', filters: ['facility', 'customer', 'vehicle', 'group']},
+  distance: {name: '운행거리 (왕복)', unit: 'km', filters: ['facility', 'customer', 'vehicle', 'group']},
+};
+export const FILTER_KEYS = {facility: 'facility_id', customer: 'customer_id', vehicle: 'vehicle_id', product: 'product', group: 'group'};
+export const PRODUCT_NAMES = {large: '대형', small: '소형', premium: '프리미엄'};
+export const GROUP_NAMES = {normal: '일반', premium: '프리미엄', mixed: '가상 혼재'};
+export const OPERATORS = {'<=': '≤', '>=': '≥', '==': '='};
+export const emptyTerm = (metric = 'open') => ({coefficient: 1, metric, facility_id: null, customer_id: null, vehicle_id: null, product: null, group: null});
+
+export function termLabel(term, scenario) {
+  const meta = METRICS[term.metric];
+  if (!meta) return '?';
+  const named = (list, id) => list.find(x => x.id === id)?.name || id;
+  const scope = [];
+  if (term.facility_id) scope.push(named(scenario.facilities, term.facility_id));
+  if (term.customer_id) scope.push(named(scenario.customers, term.customer_id));
+  if (term.vehicle_id) scope.push(named(scenario.vehicles, term.vehicle_id));
+  if (term.product) scope.push(PRODUCT_NAMES[term.product]);
+  if (term.group) scope.push(GROUP_NAMES[term.group]);
+  return `${meta.name}(${scope.length ? scope.join(', ') : '전체'})`;
+}
+
+export function formula(rule, scenario) {
+  const left = (rule.terms || []).map((term, i) => {
+    const coefficient = Number(term.coefficient ?? 1);
+    const sign = i === 0 ? (coefficient < 0 ? '−' : '') : (coefficient < 0 ? ' − ' : ' + ');
+    const size = Math.abs(coefficient);
+    return `${sign}${size === 1 ? '' : `${fmt(size, 4)} · `}${termLabel(term, scenario)}`;
+  }).join('');
+  return `${left || '(항 없음)'} ${OPERATORS[rule.operator] || '≤'} ${fmt(rule.rhs ?? 0, 4)}`;
+}

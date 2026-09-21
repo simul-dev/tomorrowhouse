@@ -77,3 +77,65 @@ def test_unused_unknown_result_metadata_is_not_written_to_workbook(scenario):
         "/api/export", json={"scenario": scenario.model_dump(), "result": result})
     assert response.status_code == 200
     assert response.content[:2] == b"PK"
+
+
+@pytest.mark.parametrize("constraint, reason", [
+    ({"id": "r", "type": "custom", "rhs": 1, "terms": []}, "empty left-hand side"),
+    ({"id": "r", "type": "custom", "terms": [{"metric": "open"}]}, "missing right-hand side"),
+    ({"id": "r", "type": "custom", "rhs": 1, "value": 2,
+      "terms": [{"metric": "open"}]}, "value and rhs together"),
+    ({"id": "r", "type": "custom", "rhs": 1,
+      "terms": [{"metric": "unmet", "facility_id": "F"}]}, "filter unsupported by metric"),
+    ({"id": "r", "type": "custom", "rhs": 1,
+      "terms": [{"metric": "open", "facility_id": "ghost"}]}, "unknown facility in a term"),
+    ({"id": "r", "type": "custom", "rhs": 1,
+      "terms": [{"metric": "spend"}]}, "unknown metric"),
+    ({"id": "r", "type": "custom", "rhs": 1, "operator": "<",
+      "terms": [{"metric": "open"}]}, "unsupported operator"),
+    ({"id": "r", "type": "max_dcs", "value": 1, "rhs": 2,
+      "terms": [{"metric": "open"}]}, "terms on a template constraint"),
+])
+def test_malformed_custom_constraints_are_rejected(scenario, constraint, reason):
+    payload = scenario.model_dump()
+    payload["constraints"] = [constraint]
+    with pytest.raises(ValidationError):
+        Scenario.model_validate(payload)
+    assert TestClient(app).post("/api/validate", json=payload).status_code == 422, reason
+
+
+def test_custom_term_matching_no_variable_is_reported_instead_of_read_as_zero(scenario):
+    payload = scenario.model_dump()
+    # separate_premium keeps the groups {normal, premium}; no lane carries the
+    # "mixed" group, so this rule would silently bind against an empty sum.
+    payload["constraints"] = [{"id": "empty-rule", "type": "custom", "rhs": 3, "operator": "<=",
+                               "terms": [{"metric": "trips", "group": "mixed"}]}]
+    result = solve(Scenario.model_validate(payload))
+    assert result["status"] == "optimal", result
+    assert any("empty-rule" in note for note in result["diagnostics"]), result["diagnostics"]
+
+
+def test_result_written_before_newer_constraint_fields_still_audits(scenario):
+    """Stored results predate later schema fields; dropping a field that the
+    input leaves at its default must not be read as a constraint mismatch."""
+    payload = scenario.model_dump()
+    payload["constraints"] = [{"id": "cap", "type": "max_dcs", "value": 1, "enabled": True}]
+    model = Scenario.model_validate(payload)
+    result = solve(model)
+    assert result["validation"]["passed"], result["validation"]
+    legacy = dict(result, applied_constraints=[
+        {key: value for key, value in result["applied_constraints"][0].items()
+         if key not in ("label", "terms", "operator", "rhs")}])
+    assert validate_result(model, legacy)["passed"]
+
+
+def test_applied_constraint_report_cannot_drop_a_custom_rules_terms(scenario):
+    payload = scenario.model_dump()
+    payload["constraints"] = [{"id": "rule", "type": "custom", "enabled": True,
+                               "operator": "<=", "rhs": 5,
+                               "terms": [{"metric": "trips", "coefficient": 1}]}]
+    model = Scenario.model_validate(payload)
+    result = solve(model)
+    assert result["validation"]["passed"], result["validation"]
+    stripped = dict(result, applied_constraints=[
+        {key: value for key, value in result["applied_constraints"][0].items() if key != "terms"}])
+    assert not validate_result(model, stripped)["passed"]
