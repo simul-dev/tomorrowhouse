@@ -1,6 +1,7 @@
-import React from 'react';
-import {Database, Ruler, Sparkles, Sigma, Split, Binary, ShieldCheck} from 'lucide-react';
+import React, {useState} from 'react';
+import {Database, Ruler, Sparkles, Sigma, Split, Binary, ShieldCheck, Maximize2} from 'lucide-react';
 import {Hint} from './components.jsx';
+import Formulation from './Formulation.jsx';
 
 /* Academic framing of the case. The text here documents the formulation that
    backend/optimizer.py actually builds, so the two must be changed together. */
@@ -49,7 +50,7 @@ const WORKFLOW = [
       '후보 생성만 휴리스틱이고 이후 개설·배정·배차는 통합 최적화합니다.',
   },
   {
-    icon: Sigma, step: '04', name: '정식화',
+    icon: Sigma, step: '04', name: '정식화', expandable: true,
     summary: '단일 MILP',
     detail: 'y_i(개설) · a_ij(배정) · q_ijp(출고) · u_jp(미충족) · n_ijgk(회차)를 모두 정수로 두고 ' +
       '임대료 + 처리비 + 공급비 + 운송비 + 패널티를 최소화합니다. 수요보존, 개설연계, 운송군 분리, ' +
@@ -98,18 +99,22 @@ export function ProblemBrief() {
 }
 
 export function MethodWorkflow() {
+  const [showFormulation, setShowFormulation] = useState(false);
+  if (showFormulation) return <Formulation onBack={() => setShowFormulation(false)} />;
   return <section className="workflow" aria-label="최적화 해법 워크플로우">
     <div className="workflow-head">
       <h2>해법 워크플로우</h2>
-      <p>각 단계에 커서를 올리거나 키보드로 이동하면 사용한 알고리즘을 볼 수 있습니다.</p>
+      <p>각 단계에 커서를 올리거나 키보드로 이동하면 사용한 알고리즘을 볼 수 있습니다. 정식화 단계는 눌러서 전체 수리모형을 펼칠 수 있습니다.</p>
     </div>
     <ol className="workflow-track">
-      {WORKFLOW.map(({icon: Icon, step, name, summary, detail}) => <li key={step}>
-        <Hint text={detail} label={`${step} ${name} 알고리즘 설명`}>
-          <div className="workflow-step">
-            <span className="workflow-index"><Icon size={15} strokeWidth={1.8} /><i>{step}</i></span>
+      {WORKFLOW.map(({icon: Icon, step, name, summary, detail, expandable}) => <li key={step}>
+        <Hint text={detail} expanded={false}
+              label={expandable ? `${step} ${name} 전체 수리모형 열기` : `${step} ${name} 알고리즘 설명`}
+              onActivate={expandable ? () => setShowFormulation(true) : undefined}>
+          <div className={`workflow-step ${expandable ? 'expandable' : ''}`}>
+            <span className="workflow-index"><Icon size={15} strokeWidth={1.8} /><i>{step}</i>{expandable && <Maximize2 className="expand-mark" size={11} strokeWidth={2.2} />}</span>
             <b>{name}</b>
-            <small>{summary}</small>
+            <small>{expandable ? '전체 모형 보기' : summary}</small>
           </div>
         </Hint>
       </li>)}

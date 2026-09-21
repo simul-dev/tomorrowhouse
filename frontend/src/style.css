@@ -99,3 +99,35 @@
 /* The hint must fill its grid cell: sized to its content it also shrank the
    step card and anchored the bubble to the text edge instead of the column. */
 .workflow-track>li>.hint{flex:1;min-width:0}
+
+/* ---- expandable MILP formulation ---- */
+.workflow-step.expandable{border-left-color:var(--primary);background:#f4f7fd}
+.workflow-step.expandable small{color:var(--primary);font-weight:600}
+.expand-mark{margin-left:auto;color:var(--primary)}
+.hint-trigger:hover .workflow-step.expandable,.hint-trigger:focus-visible .workflow-step.expandable{background:#e8eefb;border-color:#9dbaea}
+.formulation{margin:0 0 20px;border:1px solid var(--line);border-radius:9px;background:#fffefa;padding:15px 17px}
+.formulation-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:13px}
+.formulation-head h2{font-size:14px;font-weight:700;letter-spacing:-.3px;color:#1d2d44}
+.formulation-head p{font-size:10px;color:var(--muted);margin-top:3px;word-break:keep-all}
+.back-button{flex-shrink:0}
+.formulation-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;align-items:start}
+.formulation-block{min-width:0}
+.formulation-block.wide{grid-column:1 / -1}
+.formulation-block h3{font-size:11px;font-weight:700;color:var(--primary);letter-spacing:-.2px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+.reason-list,.constraint-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;counter-reset:item}
+.reason-list>li,.constraint-list>li{counter-increment:item;padding-left:20px;position:relative;min-width:0}
+.reason-list>li::before,.constraint-list>li::before{content:counter(item);position:absolute;left:0;top:1px;width:14px;height:14px;border-radius:50%;background:var(--primary-soft);color:var(--primary);font-size:8px;font-weight:700;display:grid;place-items:center}
+.reason-list b,.constraint-list b{display:block;font-size:10.5px;color:#1d2d44;margin-bottom:3px}
+.reason-list span,.constraint-list span{display:block;font-size:10px;line-height:1.75;color:#59636f;word-break:keep-all}
+.symbol-list{margin:0;display:flex;flex-direction:column;gap:6px}
+.symbol-list>div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:9px;align-items:baseline}
+.symbol-list dt{font-size:10px;font-weight:700;color:var(--primary);word-break:break-word}
+.symbol-list dt i{display:block;font-style:normal;font-size:8px;font-weight:500;color:#98a2b3;margin-top:1px}
+.symbol-list dd{margin:0;font-size:10px;line-height:1.7;color:#59636f;word-break:keep-all}
+.formula-block{margin:0 0 9px;background:#12213a;color:#f0c14a;border-radius:6px;padding:11px 13px;font-family:'DM Sans','Noto Sans KR',monospace;font-size:10.5px;line-height:1.8;overflow-x:auto;white-space:pre;word-break:normal}
+.formula-block.small{margin:4px 0 5px;padding:8px 10px;font-size:10px}
+.formula-note{font-size:10px;line-height:1.85;color:#59636f;word-break:keep-all}
+.formula-note b{color:#1d3557;font-weight:600}
+@media(max-width:1120px){.formulation-body{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.formulation-body{grid-template-columns:minmax(0,1fr)}.symbol-list>div{grid-template-columns:80px minmax(0,1fr);gap:7px}}
+@media(max-width:620px){.formulation{padding:12px}.formulation-head{gap:10px}.formula-block{font-size:9.5px;padding:9px 10px}}

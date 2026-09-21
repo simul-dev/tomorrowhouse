@@ -76,7 +76,7 @@ python -m uvicorn backend.api:app --host 127.0.0.1 --port 8000
 
 ## 프로젝트 구조
 
-기본 결과는 **구리·수원·부천·용인 4곳, 541,155,890.88원/일, 충족률 99.406%, gap 0**입니다. 백엔드 84개 테스트, 실제 브라우저 11개 흐름, 저장된 입력·결과 28쌍 검산과 production build를 통과했습니다. 상세 수치는 [정책 보고서](docs/policy-recommendations.md)와 [검증 기록](docs/validation.md)을 참조하세요.
+기본 결과는 **구리·수원·부천·용인 4곳, 541,155,890.88원/일, 충족률 99.406%, gap 0**입니다. 백엔드 84개 테스트, 실제 브라우저 12개 흐름, 저장된 입력·결과 28쌍 검산과 production build를 통과했습니다. 상세 수치는 [정책 보고서](docs/policy-recommendations.md)와 [검증 기록](docs/validation.md)을 참조하세요.
 
 ```text
 backend/       입력 검증, 후보 생성, 거리, 최적화, 검산, API, CLI

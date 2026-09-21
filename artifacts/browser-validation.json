@@ -7,6 +7,7 @@
     "scenario save, duplicate, side-by-side comparison, reload persistence and restore",
     "coordinate editing invalidates stale output and recalculates the actual solve",
     "map click adds a DC, actual marker drag updates coordinates, delete and layer controls",
+    "formulation view opens the full MILP from the workflow and returns without layout overflow",
     "custom linear rule built in the UI binds the premium shortfall and passes the independent audit",
     "constraint deactivate/reset and deliberate conflicting policies show infeasible correctly",
     "period add/delete/add keeps unique names and produces a valid multi-period solve",

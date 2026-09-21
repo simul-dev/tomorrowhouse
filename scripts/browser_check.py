@@ -109,6 +109,16 @@ def main():
         page.get_by_label("프리미엄 수요",exact=True).check()
         steps.append("map click adds a DC, actual marker drag updates coordinates, delete and layer controls")
 
+        page.get_by_label("04 정식화 전체 수리모형 열기", exact=True).click()
+        expect(page.get_by_role("heading", name="MILP 정식화", exact=True)).to_be_visible()
+        expect(page.locator(".workflow-track")).to_have_count(0)
+        assert page.locator(".constraint-list>li").count() == 8
+        assert "Σ_t w_t" in page.locator(".formula-block").first.inner_text()
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "Formulation overflow"
+        page.get_by_role("button", name="해법 워크플로우로", exact=True).click()
+        expect(page.locator(".workflow-track>li")).to_have_count(7)
+        steps.append("formulation view opens the full MILP from the workflow and returns without layout overflow")
+
         page.get_by_role("tab", name="정책", exact=True).click()
         page.get_by_label("프리미엄 배송거리 활성화",exact=True).uncheck()
         relaxed, _ = run()
