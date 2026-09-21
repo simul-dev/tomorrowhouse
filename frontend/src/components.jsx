@@ -8,10 +8,10 @@ export function Toggle({label, checked, onChange, hint}) { return <label classNa
 export function Section({eyebrow, title, children, action}) { return <section className="form-section"><div className="section-title"><div>{eyebrow && <small>{eyebrow}</small>}<h3>{title}</h3></div>{action}</div>{children}</section>; }
 export function Empty({icon: Icon, title, children}) { return <div className="empty-state">{Icon && <div className="empty-icon"><Icon size={26} strokeWidth={1.5} /></div>}<h3>{title}</h3><p>{children}</p></div>; }
 export function Reset({onClick, label = '기본값 복원'}) { return <button type="button" className="icon-button" aria-label={label} title={label} onClick={onClick}><RotateCcw size={15} /></button>; }
-export function Hint({text, label, children}) {
+export function Hint({text, label, children, className = ''}) {
   const id = useId();
   const [pinned, setPinned] = useState(false);
-  return <span className={`hint ${pinned ? 'pinned' : ''}`}>
+  return <span className={`hint ${className} ${pinned ? 'pinned' : ''}`}>
     <button type="button" className="hint-trigger" aria-label={label} aria-describedby={id} aria-expanded={pinned} onClick={() => setPinned(open => !open)} onBlur={() => setPinned(false)}>{children}</button>
     <span className="hint-bubble" role="tooltip" id={id}>{text}</span>
   </span>;

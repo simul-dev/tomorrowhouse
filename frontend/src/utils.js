@@ -6,7 +6,7 @@ export const clone = obj => structuredClone(obj);
 export const total = demand => Object.values(demand).reduce((s, n) => s + n, 0);
 export const cbm = demand => demand.large + .2 * (demand.small + demand.premium);
 export const STATUS = {optimal: '최적화 완료', feasible_limit: '시간 제한 · 실행가능해', infeasible: '실행 불가능', no_solution: '시간 내 해 없음', error: '검증 / 계산 오류'};
-export const COSTS = [['fixed', '거점 개설비', '#12325e'], ['handling', '처리비', '#2f6fd0'], ['inbound', 'CDC 공급비', '#7fa8e0'], ['transport_normal', '일반 운송비', '#e0a020'], ['transport_premium', '프리미엄 운송비', '#b5730a'], ['penalty', '미충족 패널티', '#c0392b']];
+export const COSTS = [['fixed', '거점 임대료', '#12325e'], ['handling', '처리비', '#2f6fd0'], ['inbound', 'CDC 공급비', '#7fa8e0'], ['transport_normal', '일반 운송비', '#e0a020'], ['transport_premium', '프리미엄 운송비', '#b5730a'], ['penalty', '미충족 패널티', '#c0392b']];
 export const validResult = r => !!r && ['optimal', 'feasible_limit'].includes(r.status) && r.validation?.passed === true;
 export function explainError(detail) {
   if (typeof detail === 'string') return detail;

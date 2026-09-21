@@ -2,7 +2,7 @@
 
 ## 집합과 입력
 
-후보 DC i∈I, 고정 수요지역 j∈J, 상품 p∈{large,small,premium}, 차량 k∈K, 기간 t∈T. 상품 부피 v=(1,0.2,0.2) CBM/개. D_jpt는 성장률 적용 후 정수 수요, d_ij는 재계산된 편도 Haversine km. F_i는 일별 개설비, h_i는 개당 처리비, b는 개당 CDC 공급비, π는 개당 미충족 패널티. 차량 용량 Q_k, 회당 고정비 f_k, km당 c_k. 기간 가중치 w_t는 운영일수(초기 구현은 할인 없음), 비용 시나리오 가중치는 α(개설), β(운송)이다.
+후보 DC i∈I, 고정 수요지역 j∈J, 상품 p∈{large,small,premium}, 차량 k∈K, 기간 t∈T. 상품 부피 v=(1,0.2,0.2) CBM/개. D_jpt는 성장률 적용 후 정수 수요, d_ij는 재계산된 편도 Haversine km. F_i는 일별 거점 임대료(UFLP의 개설 고정비 항), h_i는 개당 처리비, b는 개당 CDC 공급비, π는 개당 미충족 패널티. 차량 용량 Q_k, 회당 고정비 f_k, km당 c_k. 기간 가중치 w_t는 운영일수(초기 구현은 할인 없음), 비용 시나리오 가중치는 α(개설), β(운송)이다.
 
 운송군 G는 기본 {normal,premium}이고 normal={large,small}, premium={premium}. 가상 혼재 비교에서는 G={mixed}로 통합하되 프리미엄 상품의 거리제한은 유지한다.
 

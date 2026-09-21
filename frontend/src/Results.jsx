@@ -1,12 +1,38 @@
 import React, {useState} from 'react';
-import {BarChart3, ArrowUpRight, CheckCircle2, CircleDashed, Clock3, ChevronDown, Table2, Truck, Warehouse, Search, Info} from 'lucide-react';
-import {Empty} from './components.jsx';
+import {BarChart3, ArrowUpRight, CheckCircle2, CircleDashed, Clock3, ChevronDown, Table2, Truck, Warehouse, Search, Info, HelpCircle} from 'lucide-react';
+import {Empty, Hint} from './components.jsx';
 import {fmt, money, percent, STATUS, COSTS, validResult, total} from './utils.js';
+
+/* Each card explains what it measures and, where one exists, the exact term of
+   the objective function it reports. Symbols match docs/mathematical-model.md. */
+const HELP = {
+  '총 물류비': ['선택한 기간의 하루치 목적함수 값입니다. 상품 매출과 구매원가는 이 물류비 목적에 포함하지 않습니다.',
+    '총 물류비 = 거점 임대료 + 처리비 + CDC 공급비 + 일반 운송비 + 프리미엄 운송비 + 미충족 패널티'],
+  '거점 임대료': ['개설한 거점에 매일 발생하는 임대료입니다. 1회성 투자비가 아니라 원문 §4.4의 일 평균 임대료 20,000,000원/DC이며, 하루 물동량과 무관하게 개설 여부로만 결정되는 고정비입니다.',
+    'Σ_i F_i · y_i        F_i = 20,000,000원/일,  y_i = 개설 여부(0/1)'],
+  '처리비': ['거점에서 상품 한 개를 입고·보관·피킹·상차하는 데 드는 비용입니다. 원문 §4.4의 SKU당 평균 50원이며, 배송하지 못한 물량에는 발생하지 않습니다.',
+    'Σ h_i · q_ijp        h_i = 50원/개'],
+  '운송비': ['거점에서 수요지역까지 왕복 직배송하는 트럭 운임의 합(일반 + 프리미엄)입니다. 회당 고정비에 편도거리 기반 변동비를 더합니다. 복귀거리는 원문 규정대로 운임에 두 번 반영하지 않습니다.',
+    'Σ (f_k + c_k · d_ij) · n_ijgk        d_ij = 편도 km,  n = 회차'],
+  '미충족 패널티': ['배송하지 못한 상품 한 개당 부과하는 기회손실·브랜드 손상 비용입니다. 실제 현금 지출이 아니라 서비스 실패의 가치를 비용으로 환산한 값이므로, 현금 물류비와 구분해서 읽어야 합니다.',
+    'π · Σ u_jp        π = 200,000원/개'],
+  'CDC 공급비': ['이천 통합물류센터에서 각 거점으로 상품을 채워 넣는 인바운드 운송비입니다. 원문 §4.4에 따라 거리와 무관한 건당 2,000원이며, 본 모형은 이를 충족 상품 1개당으로 해석했습니다(가정 A04). 거리와 무관하므로 전량 충족 시에는 어느 거점을 열어도 같은 금액이 되어 입지 결정에 영향을 주지 않습니다.',
+    'b · Σ q_ijp        b = 2,000원/개'],
+  '개설 DC': ['후보 중 실제로 임대해 운영하는 거점 수입니다. 다기간 분석에서도 모든 기간이 같은 개설 결정을 공유합니다.', 'Σ_i y_i'],
+  '총 운행 횟수': ['하루에 발생하는 거점–수요지역 왕복 직배송 회차의 합입니다. 보유 차량 대수가 아니라 운행 횟수입니다.', 'Σ n_ijgk'],
+  '총 운송거리': ['모든 회차의 실제 주행거리 합입니다. 운임은 편도 기준으로 계산하지만 트럭은 거점으로 복귀하므로, 이 지표만 왕복으로 집계합니다.', 'Σ 2 · d_ij · n_ijgk'],
+  '충족 수요량': ['실제로 배송한 상품 개수입니다.', 'Σ q_ijp'],
+  '수요 충족률': ['전체 상품 개수 기준 충족 비율입니다. 거리 제약으로 서비스가 불가능한 미충족뿐 아니라, 추가 운송비가 패널티보다 비싸서 발생하는 경제적 미충족도 포함되어 있습니다(가정 A11).', 'Σ q_ijp / Σ D_jp'],
+  '평균 배송거리': ['출고 부피(CBM)로 가중한 편도 배송거리입니다. 물량이 많은 구간이 평균에 더 크게 반영됩니다.', 'Σ d_ij · (구간 출고 CBM) / Σ (구간 출고 CBM)'],
+  '최대 배송거리': ['출고가 있는 구간 중 가장 먼 편도거리입니다. 프리미엄 30km 제한은 프리미엄 상품에만 적용되므로 이 값이 30km를 넘어도 제약 위반이 아닙니다.', 'max d_ij  (출고가 있는 구간)'],
+  '차종별 회차': ['1톤·2.5톤·3.5톤 각 차종의 하루 운행 회차입니다. 차종마다 적재량과 운임이 달라 이 구성이 총 운송비를 좌우합니다.'],
+  '최적화 상태': ['optimal은 주어진 후보와 모형에서 허용오차 내 최적해이고, 시간 제한 해는 최적성이 증명되지 않은 실행가능해입니다. gap은 현재 해와 하한의 상대 격차이며, 0이어도 후보 10개 자체의 최적성을 뜻하지는 않습니다.'],
+};
 
 export function Statistics({result, period, busy}) {
   const k = period?.kpis, c = period?.costs;
   const cards = [
-    ['총 물류비', money(c?.total), '원/일', true], ['거점 개설비', money(c?.fixed), '원/일'], ['처리비', money(c?.handling), '원/일'],
+    ['총 물류비', money(c?.total), '원/일', true], ['거점 임대료', money(c?.fixed), '원/일'], ['처리비', money(c?.handling), '원/일'],
     ['운송비', c ? money(c.transport_normal + c.transport_premium) : '—', '원/일'], ['미충족 패널티', money(c?.penalty), '원/일'], ['CDC 공급비', money(c?.inbound), '원/일'],
     ['개설 DC', fmt(k?.open_dcs), '개'], ['총 운행 횟수', fmt(k?.total_trips), '회/일'],
     ['총 운송거리', fmt(k?.total_distance_km, 1), 'km/일 · 왕복'], ['충족 수요량', fmt(k?.fulfilled_demand), '개/일'],
@@ -15,7 +41,15 @@ export function Statistics({result, period, busy}) {
     ['차종별 회차', k ? Object.entries(k.trips_by_vehicle || {}).map(([name, n]) => `${name}: ${fmt(n)}`).join(' / ') : '—', '회/일', false, true],
     ['최적화 상태', busy ? '계산 중' : result ? STATUS[result.status] : '실행 전', result ? `${fmt(result.runtime_seconds, 2)}초 · gap ${percent(result.mip_gap)}` : '설정을 완료하고 실행하세요', false, true],
   ];
-  return <div className="kpi-grid" aria-label="Overall Statistics">{cards.map(([label, value, unit, primary, small]) => <article className={`kpi-card ${primary ? 'primary' : ''}`} key={label}><span>{label}</span><strong className={small ? 'small-value' : ''}>{value}</strong><small>{unit}</small>{primary && <ArrowUpRight size={17} />}</article>)}</div>;
+  return <div className="kpi-grid" aria-label="Overall Statistics">{cards.map(([label, value, unit, primary, small]) => {
+    const [meaning, expression] = HELP[label] || [];
+    return <article className={`kpi-card ${primary ? 'primary' : ''}`} key={label}><span>{label}</span><strong className={small ? 'small-value' : ''}>{value}</strong><small>{unit}</small>
+      {meaning && <Hint className="kpi-help" label={`${label} 설명 보기`} text={<>
+        <span className="hint-line">{meaning}</span>
+        {expression && <span className="hint-formula">{expression}</span>}
+      </>}><HelpCircle size={13} strokeWidth={2} /></Hint>}
+    </article>;
+  })}</div>;
 }
 
 export function ResultPanel({result, period, scenario, busy, onExport}) {

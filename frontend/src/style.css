@@ -35,10 +35,9 @@
 .hint-trigger{display:block;width:100%;min-width:0;text-align:left;padding:0;border-radius:7px;background:none}
 .hint-bubble{position:absolute;top:calc(100% + 8px);left:0;z-index:1200;width:300px;max-width:min(300px,76vw);background:#152238;color:#e7ecf5;font-size:10px;line-height:1.8;padding:11px 13px;border-radius:7px;box-shadow:0 10px 24px #10203a33;opacity:0;visibility:hidden;transform:translateY(-3px);transition:opacity .13s,transform .13s,visibility .13s;pointer-events:none;word-break:keep-all;white-space:normal;font-weight:400;text-align:left}
 .hint:hover>.hint-bubble,.hint:focus-within>.hint-bubble,.hint.pinned>.hint-bubble{opacity:1;visibility:visible;transform:none}
-.workflow-track>li:nth-last-child(-n+3) .hint-bubble{left:auto;right:0}
-@media(max-width:1350px){.workflow-track{grid-template-columns:repeat(4,minmax(0,1fr))}.workflow-track>li:nth-last-child(-n+3) .hint-bubble{left:0;right:auto}.workflow-track>li:nth-child(4n) .hint-bubble{left:auto;right:0}}
-@media(max-width:850px){.problem-brief h1{font-size:21px}.problem-brief p{font-size:11px}.workflow-track{grid-template-columns:repeat(3,minmax(0,1fr))}.workflow-track>li:nth-child(4n) .hint-bubble{left:0;right:auto}.workflow-track>li:nth-child(3n) .hint-bubble{left:auto;right:0}}
-@media(max-width:620px){.problem-brief h1{font-size:19px;max-width:none}.problem-brief p{font-size:10.5px;max-width:none;line-height:1.8}.workflow{padding:12px}.workflow-track{grid-template-columns:repeat(2,minmax(0,1fr))}.workflow-track>li:nth-child(3n) .hint-bubble{left:0;right:auto}.workflow-track>li:nth-child(2n) .hint-bubble{left:auto;right:0}.hint-bubble{width:min(300px,82vw)}}
+@media(max-width:1350px){.workflow-track{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:850px){.problem-brief h1{font-size:21px}.problem-brief p{font-size:11px}.workflow-track{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){.problem-brief h1{font-size:19px;max-width:none}.problem-brief p{font-size:10.5px;max-width:none;line-height:1.8}.workflow{padding:12px}.workflow-track{grid-template-columns:repeat(2,minmax(0,1fr))}.hint-bubble{width:min(300px,82vw)}}
 .rule-builder{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .rule-formula{background:#12213a;border-radius:6px;padding:9px 10px;display:flex;flex-direction:column;gap:5px}
 .rule-formula>span{font-size:7px;letter-spacing:1.2px;font-weight:700;color:#8fa4c6}
@@ -56,3 +55,47 @@
 .problem-class .hint-bubble{top:calc(100% + 8px);left:0;right:auto}
 .table-tag.danger{background:#fdecea;color:var(--danger)}
 .unmet-count{color:var(--danger);font-weight:600}
+
+/* ---- per-KPI explanation ---- */
+.kpi-card{position:relative;overflow:visible}
+/* The hint spans the card so the bubble lines up with the card edges, not
+   with the 20px icon; anchoring to the icon pushed it past the viewport. */
+.hint.kpi-help{position:absolute;left:0;right:0;top:8px;height:20px;display:block;width:auto;max-width:none;pointer-events:none}
+.kpi-help>.hint-trigger{position:absolute;right:8px;top:0;width:20px;height:20px;display:grid;place-items:center;border-radius:50%;color:#b3bcc9;pointer-events:auto}
+.kpi-help>.hint-trigger:hover,.kpi-help>.hint-trigger:focus-visible{color:var(--primary);background:var(--primary-soft)}
+.kpi-card.primary .kpi-help>.hint-trigger{color:#7f96bb}
+.hint-line{display:block}
+.hint-formula{display:block;margin-top:8px;padding-top:8px;border-top:1px solid #2b3b56;color:#f0c14a;font-size:9.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.kpi-help .hint-bubble{width:min(290px,calc(100vw - 32px))}
+/* Keep the bubble inside the page: cards in the right half of each grid row
+   open leftwards. The column counts follow the .kpi-grid breakpoints. */
+
+/* Tooltip side per grid column. Every rule below carries one :nth-child so the
+   specificities match and a later breakpoint actually overrides an earlier one;
+   mixing bare and :nth-child selectors silently kept the wrong side. */
+.kpi-grid>*:nth-child(n) .hint-bubble,.workflow-track>li:nth-child(n) .hint-bubble{left:0;right:auto}
+.kpi-grid>*:nth-child(8n+5) .hint-bubble,.kpi-grid>*:nth-child(8n+6) .hint-bubble,
+.kpi-grid>*:nth-child(8n+7) .hint-bubble,.kpi-grid>*:nth-child(8n+8) .hint-bubble,
+.workflow-track>li:nth-child(7n+5) .hint-bubble,.workflow-track>li:nth-child(7n+6) .hint-bubble,
+.workflow-track>li:nth-child(7n+7) .hint-bubble{left:auto;right:0}
+@media(max-width:1350px){
+  .workflow-track>li:nth-child(n) .hint-bubble{left:0;right:auto}
+  .workflow-track>li:nth-child(4n+3) .hint-bubble,.workflow-track>li:nth-child(4n+4) .hint-bubble{left:auto;right:0}
+}
+@media(max-width:1120px){
+  .kpi-grid>*:nth-child(n) .hint-bubble{left:0;right:auto}
+  .kpi-grid>*:nth-child(4n+3) .hint-bubble,.kpi-grid>*:nth-child(4n+4) .hint-bubble{left:auto;right:0}
+}
+@media(max-width:850px){
+  .workflow-track>li:nth-child(n) .hint-bubble{left:0;right:auto}
+  .workflow-track>li:nth-child(3n+3) .hint-bubble{left:auto;right:0}
+}
+@media(max-width:620px){
+  .kpi-grid>*:nth-child(n) .hint-bubble{left:0;right:auto}
+  .kpi-grid>*:nth-child(2n+2) .hint-bubble{left:auto;right:0}
+  .workflow-track>li:nth-child(n) .hint-bubble{left:0;right:auto}
+  .workflow-track>li:nth-child(2n+2) .hint-bubble{left:auto;right:0}
+}
+/* The hint must fill its grid cell: sized to its content it also shrank the
+   step card and anchored the bubble to the text edge instead of the column. */
+.workflow-track>li>.hint{flex:1;min-width:0}
